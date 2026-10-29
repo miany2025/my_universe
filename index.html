@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-</head>
-<body>
-<title>Мои языки</title>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Мой личный сайт</title><style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Мои языки</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500&family=Noto+Sans:wght@400&display=swap">
@@ -160,14 +152,17 @@ textarea{resize:vertical;min-height:64px}
 /* flashcards */
 .deckbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
 .stage{display:grid;place-items:center;padding:8px 0}
-.flip{perspective:1200px;width:min(520px,100%);height:340px}
+.flip{perspective:1200px;width:min(520px,100%);height:400px}
 .flip .inner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
 .flip.on .inner{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:28px;padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;overflow:auto;
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:28px;padding:26px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;overflow:auto;
   background:linear-gradient(160deg,var(--glass-hi),var(--glass));border:1px solid var(--line);box-shadow:var(--shadow)}
 .face.back{transform:rotateY(180deg)}
 .face h2{font-size:clamp(38px,8vw,54px);line-height:1.05;overflow-wrap:anywhere}
 .face .hint{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.wdef{font-style:italic;color:var(--ink-soft);font-size:15px}
+.face .cdef{font-style:italic;color:var(--ink-soft);max-width:34ch;line-height:1.35}
+.face .ctr{font-family:var(--display);font-size:26px;color:var(--accent);line-height:1.15}
 .face .sent{font-style:italic;font-family:var(--display);font-size:21px;line-height:1.3}
 .face .sent small{display:block;font-family:var(--body);font-style:normal;font-size:14px;color:var(--ink-soft);margin-top:2px}
 .rate{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px}
@@ -206,7 +201,7 @@ textarea{resize:vertical;min-height:64px}
   .orb .pct{font-size:42px}
   .exrow{grid-template-columns:1fr auto}
   .exrow input:nth-child(2){grid-column:1}
-  .flip{height:380px}
+  .flip{height:430px}
 }
 @media (prefers-reduced-motion:reduce){.flip .inner,.progressline i{transition:none}}
 
@@ -365,6 +360,87 @@ a.btn{text-decoration:none}
 .rich ul,.rich ol{margin:6px 0;padding-left:22px;display:flex;flex-direction:column;gap:4px}
 @media (max-width:560px){.nphoto{grid-template-columns:1fr}.nph-img{aspect-ratio:16/9}}
 .form label.filebtn{flex-direction:row;text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink-soft)}
+
+/* ---- hub: affirmations, recipes, knowledge ---- */
+.hubhead{display:flex;flex-direction:column;gap:16px}
+.hubhead h1{font-size:clamp(40px,7vw,60px);line-height:1.05;font-weight:400;margin:4px 0 6px}
+.hubhead p{color:var(--ink-soft)}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.acard{position:relative;aspect-ratio:4/5;border-radius:26px;padding:34px 22px 28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px;color:var(--ct);background:linear-gradient(160deg,var(--c1),var(--c2));overflow:hidden;cursor:pointer;box-shadow:0 10px 30px rgba(120,90,140,.16);isolation:isolate;min-width:0}
+.acard .abg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.acard.hasbg{color:#fff}
+.acard.hasbg::before{content:"";position:absolute;inset:0;background:rgba(30,18,40,.45);z-index:-1}
+.acard p{font-family:var(--display);font-size:clamp(22px,2.3vw,27px);line-height:1.22;overflow-wrap:anywhere;margin:0;font-weight:500}
+.acard.font-sans p{font-family:var(--body);font-size:clamp(18px,2vw,22px);font-weight:400;line-height:1.35}
+.acard .atheme{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.75}
+.acard .pinbtn{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.55);color:var(--ct);border-color:transparent}
+.acard .pinbtn[aria-pressed="true"]{background:rgba(255,255,255,.92);color:#B0634F}
+.acard .asm{position:absolute;bottom:10px;left:0;right:0;text-align:center;color:inherit;opacity:.6}
+.acard:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.apreview{max-width:250px;width:100%;margin:0 auto;cursor:default}
+.aedit{display:grid;grid-template-columns:250px minmax(0,1fr);gap:22px;align-items:start}
+.aedit .form{min-width:0}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.sw{width:38px;height:38px;border-radius:50%;border:2px solid var(--line);background:linear-gradient(135deg,var(--c1),var(--c2));padding:0}
+.sw[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 3px var(--bg)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.mgrid:empty{display:none}
+.mi{margin:0;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--glass);min-width:0}
+.mi img,.mi video{width:100%;display:block;max-height:360px;object-fit:cover}
+.mi-video,.mi-audio{grid-column:1/-1}
+.mi-video video{object-fit:contain;background:#000}
+.mi audio{width:100%;display:block;padding:8px;box-sizing:border-box}
+.mrm{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(40,25,50,.65);color:#fff;font-size:18px;line-height:1;padding:0;z-index:2}
+.mlink{display:flex;flex-direction:column;padding:12px 14px;color:var(--ink);text-decoration:none;overflow-wrap:anywhere;gap:2px}
+.mlink small{color:var(--ink-soft)}
+.mblock{display:flex;flex-direction:column;gap:10px}
+.mtools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.mtools input[type=text]{flex:1 1 180px;width:auto}
+.mnote{font-size:13px;color:var(--ink-soft)}
+.hview{display:flex;flex-direction:column;gap:16px}
+.hview h2{font-size:clamp(30px,5vw,42px);line-height:1.1;font-weight:500;overflow-wrap:anywhere}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chips .area{background:var(--lilac)}
+.chip{font-size:13px;color:var(--ink-soft);background:var(--glass-hi);border:1px solid var(--line);padding:3px 12px;border-radius:999px}
+.hview h4{font-family:var(--display);font-size:26px;font-weight:500;margin:6px 0 4px}
+.hcols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:22px}
+.chk{display:flex;flex-direction:column;gap:6px;list-style:none;margin:0;padding:0}
+.chk label{display:flex;gap:10px;align-items:flex-start;font-size:16px;text-transform:none;letter-spacing:0;color:var(--ink);cursor:pointer}
+.chk input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--accent)}
+.chk input:checked+span{text-decoration:line-through;color:var(--ink-soft)}
+.steps{list-style:decimal;margin:0;padding-left:24px;display:flex;flex-direction:column;gap:8px;line-height:1.55}
+.hnote{padding:12px 16px;border-radius:14px;background:var(--glass-hi);border:1px solid var(--line);color:var(--ink-soft)}
+.rcover{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:16px;display:block}
+.srclink{display:inline-flex;gap:6px;align-items:center;color:var(--accent);overflow-wrap:anywhere}
+.kbwrap{display:grid;grid-template-columns:260px minmax(0,1fr);gap:16px;align-items:start}
+.kbside{display:flex;flex-direction:column;gap:6px;position:sticky;top:12px}
+.kbmain{display:flex;flex-direction:column;gap:16px;min-width:0}
+.ksb{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 12px;border-radius:12px;border:1px solid transparent;background:transparent;color:var(--ink);padding-left:calc(12px + var(--d,0)*16px);min-width:0}
+.ksb span{overflow-wrap:anywhere}
+.ksb b{font-weight:400;font-size:12px;color:var(--ink-soft);flex:none}
+.ksb:hover{background:var(--glass-hi)}
+.ksb[aria-pressed="true"]{background:var(--glass-hi);border-color:var(--accent)}
+.ksform{display:flex;flex-direction:column;gap:8px;margin-top:8px;padding-top:10px;border-top:1px solid var(--line)}
+.ksform .mtools .btn{flex:1 1 auto}
+.afplay{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));background:linear-gradient(160deg,var(--c1),var(--c2));color:var(--ct);transition:background .7s,color .7s;text-align:center}
+.afplay[hidden]{display:none}
+.afplay.hasbg{color:#fff;background-size:cover;background-position:center}
+.afplay.hasbg::before{content:"";position:absolute;inset:0;background:rgba(30,18,40,.5)}
+.afplay>*{position:relative}
+.afp-theme{font-size:12px;letter-spacing:.24em;text-transform:uppercase;opacity:.75}
+.afp-text{font-family:var(--display);font-size:clamp(30px,6vw,56px);line-height:1.18;max-width:20ch;overflow-wrap:anywhere;margin:0;font-weight:500}
+.afp-text.sans{font-family:var(--body);font-weight:400;font-size:clamp(24px,4.6vw,42px);max-width:24ch}
+.afp-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;max-width:620px}
+.afp-bar button,.afp-bar select{padding:9px 16px;border-radius:999px;border:1px solid currentColor;background:rgba(255,255,255,.22);color:inherit;font-size:15px;width:auto}
+.afp-bar select option{color:#333}
+.afp-bar input[type=range]{width:110px;accent-color:currentColor}
+.afp-dots{font-size:13px;opacity:.7}
+@media (max-width:760px){
+  .kbwrap{grid-template-columns:1fr}
+  .kbside{position:static}
+  .aedit{grid-template-columns:1fr}
+  .hcols{grid-template-columns:1fr}
+}
 </style>
 <canvas id="sky" aria-hidden="true"></canvas>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -384,9 +460,9 @@ a.btn{text-decoration:none}
     <button type="button" data-sec="plan">Планирование</button>
     <button type="button" data-sec="lang">Языки</button>
     <button type="button" data-sec="notes">Заметки</button>
-    <span title="Скоро">Аффирмации</span>
-    <span title="Скоро">Рецепты</span>
-    <span title="Скоро">База знаний</span>
+    <button type="button" data-sec="af">Аффирмации</button>
+    <button type="button" data-sec="rc">Рецепты</button>
+    <button type="button" data-sec="kb">База знаний</button>
   </nav>
 
   <div id="sec-lang" class="secwrap">
@@ -490,6 +566,25 @@ a.btn{text-decoration:none}
     <div id="nEditor" class="panel" hidden></div>
     <div class="notes-grid" id="nList"></div>
   </div>
+  <div id="sec-af" class="secwrap" hidden></div>
+  <div id="sec-rc" class="secwrap" hidden></div>
+  <div id="sec-kb" class="secwrap" hidden></div>
+</div>
+<div id="afPlay" class="afplay" hidden role="dialog" aria-modal="true" aria-label="Сеанс аффирмаций">
+  <div class="afp-theme" id="afpTheme"></div>
+  <p class="afp-text" id="afpText" aria-live="polite"></p>
+  <div class="afp-dots" id="afpCount"></div>
+  <div class="afp-bar">
+    <button type="button" data-pl="prev" aria-label="Назад">‹</button>
+    <button type="button" data-pl="auto">Пауза</button>
+    <button type="button" data-pl="next" aria-label="Дальше">›</button>
+    <button type="button" data-pl="voice" hidden>Слушать запись</button>
+  </div>
+  <div class="afp-bar">
+    <select id="afpMusic" aria-label="Музыка"><option value="off">Без музыки</option><option value="pad">Мягкие аккорды</option><option value="sea">Шум моря</option><option value="bells">Колокольчики</option></select>
+    <input type="range" id="afpVol" min="0" max="100" value="50" aria-label="Громкость">
+    <button type="button" data-pl="close">Закрыть</button>
+  </div>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
 <script>
@@ -518,107 +613,108 @@ const LANG={
   es:{name:"Испанский",code:"es-ES",lead:"Palabras, sonidos y frases. Добавляйте слова с примерами и повторяйте их каждый день."}
 };
 const SAMPLES=[
-{"lang":"en","word":"abandon","ipa":"/əˈbændən/","tr":"покидать, бросать","pos":"глагол","ex":[{"t":"He had to abandon his car in the snow.","tr":"Ему пришлось бросить машину в снегу."}]},
-{"lang":"en","word":"achieve","ipa":"/əˈtʃiːv/","tr":"достигать","pos":"глагол","ex":[{"t":"She worked hard to achieve her goals.","tr":"Она много работала, чтобы достичь своих целей."}]},
-{"lang":"en","word":"acquire","ipa":"/əˈkwaɪər/","tr":"приобретать","pos":"глагол","ex":[{"t":"He acquired a taste for jazz.","tr":"У него появился вкус к джазу."}]},
-{"lang":"en","word":"adapt","ipa":"/əˈdæpt/","tr":"приспосабливаться","pos":"глагол","ex":[{"t":"Children adapt quickly to new places.","tr":"Дети быстро привыкают к новым местам."}]},
-{"lang":"en","word":"ambitious","ipa":"/æmˈbɪʃəs/","tr":"амбициозный","pos":"прил.","ex":[{"t":"She is young and ambitious.","tr":"Она молода и амбициозна."}]},
-{"lang":"en","word":"appreciate","ipa":"/əˈpriːʃieɪt/","tr":"ценить","pos":"глагол","ex":[{"t":"I really appreciate your help.","tr":"Я очень ценю вашу помощь."}]},
-{"lang":"en","word":"awkward","ipa":"/ˈɔːkwərd/","tr":"неловкий","pos":"прил.","ex":[{"t":"There was an awkward silence.","tr":"Повисла неловкая тишина."}]},
-{"lang":"en","word":"benefit","ipa":"/ˈbenɪfɪt/","tr":"польза","pos":"сущ.","ex":[{"t":"Regular exercise has many benefits.","tr":"У регулярных упражнений много пользы."}]},
-{"lang":"en","word":"borrow","ipa":"/ˈbɑːroʊ/","tr":"брать взаймы","pos":"глагол","ex":[{"t":"Can I borrow your pen?","tr":"Можно взять у тебя ручку?"}]},
-{"lang":"en","word":"brave","ipa":"/breɪv/","tr":"храбрый","pos":"прил.","ex":[{"t":"It was a brave decision.","tr":"Это было смелое решение."}]},
-{"lang":"en","word":"challenge","ipa":"/ˈtʃælɪndʒ/","tr":"вызов, испытание","pos":"сущ.","ex":[{"t":"Learning a language is a big challenge.","tr":"Изучение языка — большое испытание."}]},
-{"lang":"en","word":"cozy","ipa":"/ˈkoʊzi/","tr":"уютный","pos":"прил.","ex":[{"t":"We spent a cozy evening by the fireplace.","tr":"Мы провели уютный вечер у камина."}]},
-{"lang":"en","word":"curious","ipa":"/ˈkjʊriəs/","tr":"любопытный","pos":"прил.","ex":[{"t":"Children are naturally curious.","tr":"Дети от природы любопытны."}]},
-{"lang":"en","word":"daily","ipa":"/ˈdeɪli/","tr":"ежедневный","pos":"прил.","ex":[{"t":"Reading is part of my daily routine.","tr":"Чтение — часть моего распорядка дня."}]},
-{"lang":"en","word":"deadline","ipa":"/ˈdedlaɪn/","tr":"крайний срок","pos":"сущ.","ex":[{"t":"The deadline is next Friday.","tr":"Крайний срок — следующая пятница."}]},
-{"lang":"en","word":"decide","ipa":"/dɪˈsaɪd/","tr":"решать","pos":"глагол","ex":[{"t":"I can't decide what to wear.","tr":"Не могу решить, что надеть."}]},
-{"lang":"en","word":"delicious","ipa":"/dɪˈlɪʃəs/","tr":"вкусный","pos":"прил.","ex":[{"t":"This soup is delicious.","tr":"Этот суп очень вкусный."}]},
-{"lang":"en","word":"develop","ipa":"/dɪˈveləp/","tr":"развивать","pos":"глагол","ex":[{"t":"She wants to develop her skills.","tr":"Она хочет развивать свои навыки."}]},
-{"lang":"en","word":"efficient","ipa":"/ɪˈfɪʃnt/","tr":"эффективный","pos":"прил.","ex":[{"t":"This is a more efficient way to work.","tr":"Это более эффективный способ работать."}]},
-{"lang":"en","word":"enough","ipa":"/ɪˈnʌf/","tr":"достаточно","pos":"нареч.","ex":[{"t":"Do we have enough time?","tr":"У нас достаточно времени?"}]},
-{"lang":"en","word":"especially","ipa":"/ɪˈspeʃəli/","tr":"особенно","pos":"нареч.","ex":[{"t":"I love fruit, especially mangoes.","tr":"Я люблю фрукты, особенно манго."}]},
-{"lang":"en","word":"forgive","ipa":"/fərˈɡɪv/","tr":"прощать","pos":"глагол","ex":[{"t":"Please forgive me for being late.","tr":"Пожалуйста, простите, что опоздал."}]},
-{"lang":"en","word":"gratitude","ipa":"/ˈɡrætɪtuːd/","tr":"благодарность","pos":"сущ.","ex":[{"t":"She expressed her gratitude to everyone.","tr":"Она выразила всем свою благодарность."}]},
-{"lang":"en","word":"habit","ipa":"/ˈhæbɪt/","tr":"привычка","pos":"сущ.","ex":[{"t":"Reading before bed is a good habit.","tr":"Читать перед сном — хорошая привычка."}]},
-{"lang":"en","word":"honest","ipa":"/ˈɑːnɪst/","tr":"честный","pos":"прил.","ex":[{"t":"Be honest with yourself.","tr":"Будь честна с собой."}]},
-{"lang":"en","word":"improve","ipa":"/ɪmˈpruːv/","tr":"улучшать","pos":"глагол","ex":[{"t":"I want to improve my English.","tr":"Я хочу улучшить свой английский."}]},
-{"lang":"en","word":"journey","ipa":"/ˈdʒɜːrni/","tr":"путешествие, путь","pos":"сущ.","ex":[{"t":"Life is a journey, not a destination.","tr":"Жизнь — это путь, а не пункт назначения."}]},
-{"lang":"en","word":"lonely","ipa":"/ˈloʊnli/","tr":"одинокий","pos":"прил.","ex":[{"t":"She felt lonely in the big city.","tr":"Ей было одиноко в большом городе."}]},
-{"lang":"en","word":"meaningful","ipa":"/ˈmiːnɪŋfl/","tr":"значимый","pos":"прил.","ex":[{"t":"He wants a meaningful life.","tr":"Он хочет жизни со смыслом."}]},
-{"lang":"en","word":"mindful","ipa":"/ˈmaɪndfl/","tr":"осознанный","pos":"прил.","ex":[{"t":"Try to be mindful of your breathing.","tr":"Старайтесь осознанно следить за дыханием."}]},
-{"lang":"en","word":"nearby","ipa":"/ˌnɪrˈbaɪ/","tr":"поблизости","pos":"нареч.","ex":[{"t":"There is a cafe nearby.","tr":"Поблизости есть кафе."}]},
-{"lang":"en","word":"patient","ipa":"/ˈpeɪʃnt/","tr":"терпеливый","pos":"прил.","ex":[{"t":"Be patient, it takes time.","tr":"Будьте терпеливы, это требует времени."}]},
-{"lang":"en","word":"peaceful","ipa":"/ˈpiːsfl/","tr":"спокойный, мирный","pos":"прил.","ex":[{"t":"The lake was calm and peaceful.","tr":"Озеро было тихим и спокойным."}]},
-{"lang":"en","word":"remember","ipa":"/rɪˈmembər/","tr":"помнить","pos":"глагол","ex":[{"t":"Do you remember her name?","tr":"Ты помнишь, как её зовут?"}]},
-{"lang":"en","word":"reliable","ipa":"/rɪˈlaɪəbl/","tr":"надёжный","pos":"прил.","ex":[{"t":"He is a reliable friend.","tr":"Он надёжный друг."}]},
-{"lang":"en","word":"schedule","ipa":"/ˈskedʒuːl/","tr":"расписание","pos":"сущ.","ex":[{"t":"My schedule is full this week.","tr":"Моё расписание на этой неделе забито."}]},
-{"lang":"en","word":"shy","ipa":"/ʃaɪ/","tr":"застенчивый","pos":"прил.","ex":[{"t":"He was too shy to speak.","tr":"Он был слишком застенчив, чтобы говорить."}]},
-{"lang":"en","word":"sincere","ipa":"/sɪnˈsɪr/","tr":"искренний","pos":"прил.","ex":[{"t":"Please accept my sincere apologies.","tr":"Примите мои искренние извинения."}]},
-{"lang":"en","word":"struggle","ipa":"/ˈstrʌɡl/","tr":"бороться, с трудом справляться","pos":"глагол","ex":[{"t":"She struggled to find the right words.","tr":"Ей было трудно подобрать нужные слова."}]},
-{"lang":"en","word":"successful","ipa":"/səkˈsesfl/","tr":"успешный","pos":"прил.","ex":[{"t":"She is a successful designer.","tr":"Она успешный дизайнер."}]},
-{"lang":"en","word":"thoughtful","ipa":"/ˈθɔːtfl/","tr":"внимательный, заботливый","pos":"прил.","ex":[{"t":"It was a thoughtful gift.","tr":"Это был заботливый подарок."}]},
-{"lang":"en","word":"trust","ipa":"/trʌst/","tr":"доверие, доверять","pos":"сущ.","ex":[{"t":"Trust takes time to build.","tr":"Доверие строится не сразу."}]},
-{"lang":"en","word":"vulnerable","ipa":"/ˈvʌlnərəbl/","tr":"уязвимый","pos":"прил.","ex":[{"t":"It's okay to feel vulnerable sometimes.","tr":"Иногда чувствовать себя уязвимым — нормально."}]},
-{"lang":"en","word":"wander","ipa":"/ˈwɑːndər/","tr":"бродить","pos":"глагол","ex":[{"t":"We wandered through the old town.","tr":"Мы бродили по старому городу."}]},
-{"lang":"en","word":"whisper","ipa":"/ˈwɪspər/","tr":"шептать","pos":"глагол","ex":[{"t":"She whispered a secret in my ear.","tr":"Она прошептала мне секрет на ухо."}]},
-{"lang":"en","word":"worth","ipa":"/wɜːrθ/","tr":"стоящий","pos":"прил.","ex":[{"t":"This book is worth reading.","tr":"Эту книгу стоит прочитать."}]},
-{"lang":"es","word":"abrazo","ipa":"/aˈβɾaθo/","tr":"объятие","pos":"сущ.","ex":[{"t":"Me dio un abrazo muy fuerte.","tr":"Он крепко меня обнял."}]},
-{"lang":"es","word":"alegría","ipa":"/aleˈɣɾi.a/","tr":"радость","pos":"сущ.","ex":[{"t":"Sentí una gran alegría.","tr":"Я почувствовала большую радость."}]},
-{"lang":"es","word":"amistad","ipa":"/amisˈtað/","tr":"дружба","pos":"сущ.","ex":[{"t":"La amistad es muy importante.","tr":"Дружба очень важна."}]},
-{"lang":"es","word":"aprender","ipa":"/apɾenˈdeɾ/","tr":"учить, учиться","pos":"глагол","ex":[{"t":"Quiero aprender español.","tr":"Я хочу выучить испанский."}]},
-{"lang":"es","word":"ayudar","ipa":"/aʝuˈðaɾ/","tr":"помогать","pos":"глагол","ex":[{"t":"¿Puedes ayudarme, por favor?","tr":"Можешь мне помочь, пожалуйста?"}]},
-{"lang":"es","word":"bonito","ipa":"/boˈnito/","tr":"красивый, милый","pos":"прил.","ex":[{"t":"Qué vestido tan bonito.","tr":"Какое красивое платье."}]},
-{"lang":"es","word":"buscar","ipa":"/busˈkaɾ/","tr":"искать","pos":"глагол","ex":[{"t":"Estoy buscando mis llaves.","tr":"Я ищу свои ключи."}]},
-{"lang":"es","word":"cambiar","ipa":"/kamˈbjaɾ/","tr":"менять","pos":"глагол","ex":[{"t":"Quiero cambiar de trabajo.","tr":"Я хочу сменить работу."}]},
-{"lang":"es","word":"casa","ipa":"/ˈkasa/","tr":"дом","pos":"сущ.","ex":[{"t":"Mi casa está cerca del parque.","tr":"Мой дом рядом с парком."}]},
-{"lang":"es","word":"cerca","ipa":"/ˈθeɾka/","tr":"рядом","pos":"нареч.","ex":[{"t":"La tienda está muy cerca.","tr":"Магазин совсем рядом."}]},
-{"lang":"es","word":"comer","ipa":"/koˈmeɾ/","tr":"есть, кушать","pos":"глагол","ex":[{"t":"Vamos a comer a las dos.","tr":"Мы будем обедать в два."}]},
-{"lang":"es","word":"conocer","ipa":"/konoˈθeɾ/","tr":"знать, знакомиться","pos":"глагол","ex":[{"t":"Quiero conocer tu ciudad.","tr":"Я хочу познакомиться с твоим городом."}]},
-{"lang":"es","word":"corazón","ipa":"/koɾaˈθon/","tr":"сердце","pos":"сущ.","ex":[{"t":"Lo dije con el corazón.","tr":"Я сказала это от сердца."}]},
-{"lang":"es","word":"creer","ipa":"/kɾeˈeɾ/","tr":"верить, думать","pos":"глагол","ex":[{"t":"Creo que tienes razón.","tr":"Думаю, ты права."}]},
-{"lang":"es","word":"cuidar","ipa":"/kwiˈðaɾ/","tr":"заботиться","pos":"глагол","ex":[{"t":"Hay que cuidar la naturaleza.","tr":"Нужно беречь природу."}]},
-{"lang":"es","word":"dulce","ipa":"/ˈdulθe/","tr":"сладкий","pos":"прил.","ex":[{"t":"Me gusta el café dulce.","tr":"Я люблю сладкий кофе."}]},
-{"lang":"es","word":"echar de menos","ipa":"/eˈtʃaɾ de ˈmenos/","tr":"скучать","pos":"фраза","ex":[{"t":"Te echo de menos.","tr":"Я скучаю по тебе."}]},
-{"lang":"es","word":"empezar","ipa":"/empeˈθaɾ/","tr":"начинать","pos":"глагол","ex":[{"t":"La clase empieza a las nueve.","tr":"Урок начинается в девять."}]},
-{"lang":"es","word":"encontrar","ipa":"/eŋkonˈtɾaɾ/","tr":"находить","pos":"глагол","ex":[{"t":"No encuentro mi teléfono.","tr":"Я не могу найти свой телефон."}]},
-{"lang":"es","word":"esperanza","ipa":"/espeˈɾanθa/","tr":"надежда","pos":"сущ.","ex":[{"t":"Nunca pierdas la esperanza.","tr":"Никогда не теряй надежду."}]},
-{"lang":"es","word":"estrella","ipa":"/esˈtɾeʎa/","tr":"звезда","pos":"сущ.","ex":[{"t":"Hay muchas estrellas esta noche.","tr":"Сегодня ночью много звёзд."}]},
-{"lang":"es","word":"feliz","ipa":"/feˈliθ/","tr":"счастливый","pos":"прил.","ex":[{"t":"Estoy muy feliz hoy.","tr":"Сегодня я очень счастлива."}]},
-{"lang":"es","word":"fuerte","ipa":"/ˈfweɾte/","tr":"сильный","pos":"прил.","ex":[{"t":"Eres más fuerte de lo que crees.","tr":"Ты сильнее, чем думаешь."}]},
-{"lang":"es","word":"gracias","ipa":"/ˈɡɾaθjas/","tr":"спасибо","pos":"сущ.","ex":[{"t":"Muchas gracias por todo.","tr":"Большое спасибо за всё."}]},
-{"lang":"es","word":"hablar","ipa":"/aˈβlaɾ/","tr":"говорить","pos":"глагол","ex":[{"t":"Me gusta hablar con ella.","tr":"Мне нравится разговаривать с ней."}]},
-{"lang":"es","word":"hermoso","ipa":"/eɾˈmoso/","tr":"прекрасный","pos":"прил.","ex":[{"t":"Es un paisaje hermoso.","tr":"Это прекрасный пейзаж."}]},
-{"lang":"es","word":"lejos","ipa":"/ˈlexos/","tr":"далеко","pos":"нареч.","ex":[{"t":"Mi trabajo está lejos de aquí.","tr":"Моя работа далеко отсюда."}]},
-{"lang":"es","word":"libro","ipa":"/ˈliβɾo/","tr":"книга","pos":"сущ.","ex":[{"t":"Estoy leyendo un libro muy bueno.","tr":"Я читаю очень хорошую книгу."}]},
-{"lang":"es","word":"luna","ipa":"/ˈluna/","tr":"луна","pos":"сущ.","ex":[{"t":"La luna brilla esta noche.","tr":"Сегодня ночью светит луна."}]},
-{"lang":"es","word":"mañana","ipa":"/maˈɲana/","tr":"утро, завтра","pos":"сущ.","ex":[{"t":"Mañana tengo una reunión.","tr":"Завтра у меня встреча."}]},
-{"lang":"es","word":"mar","ipa":"/maɾ/","tr":"море","pos":"сущ.","ex":[{"t":"Me encanta el sonido del mar.","tr":"Я обожаю шум моря."}]},
-{"lang":"es","word":"mejor","ipa":"/meˈxoɾ/","tr":"лучше","pos":"нареч.","ex":[{"t":"Hoy me siento mejor.","tr":"Сегодня я чувствую себя лучше."}]},
-{"lang":"es","word":"necesitar","ipa":"/neθesiˈtaɾ/","tr":"нуждаться","pos":"глагол","ex":[{"t":"Necesito un poco de tiempo.","tr":"Мне нужно немного времени."}]},
-{"lang":"es","word":"olvidar","ipa":"/olβiˈðaɾ/","tr":"забывать","pos":"глагол","ex":[{"t":"No olvides tus llaves.","tr":"Не забудь свои ключи."}]},
-{"lang":"es","word":"paciencia","ipa":"/paˈθjenθja/","tr":"терпение","pos":"сущ.","ex":[{"t":"Aprender requiere paciencia.","tr":"Учёба требует терпения."}]},
-{"lang":"es","word":"palabra","ipa":"/paˈlaβɾa/","tr":"слово","pos":"сущ.","ex":[{"t":"No conozco esta palabra.","tr":"Я не знаю этого слова."}]},
-{"lang":"es","word":"pensar","ipa":"/penˈsaɾ/","tr":"думать","pos":"глагол","ex":[{"t":"Pienso en ti todos los días.","tr":"Я думаю о тебе каждый день."}]},
-{"lang":"es","word":"querer","ipa":"/keˈɾeɾ/","tr":"хотеть, любить","pos":"глагол","ex":[{"t":"Quiero un vaso de agua.","tr":"Я хочу стакан воды."}]},
-{"lang":"es","word":"recordar","ipa":"/rekoɾˈðaɾ/","tr":"помнить, вспоминать","pos":"глагол","ex":[{"t":"Recuerdo ese verano.","tr":"Я помню то лето."}]},
-{"lang":"es","word":"risa","ipa":"/ˈrisa/","tr":"смех","pos":"сущ.","ex":[{"t":"Su risa es contagiosa.","tr":"Её смех заразителен."}]},
-{"lang":"es","word":"saber","ipa":"/saˈβeɾ/","tr":"знать","pos":"глагол","ex":[{"t":"No sé la respuesta.","tr":"Я не знаю ответа."}]},
-{"lang":"es","word":"sonreír","ipa":"/sonreˈiɾ/","tr":"улыбаться","pos":"глагол","ex":[{"t":"Ella siempre sonríe.","tr":"Она всегда улыбается."}]},
-{"lang":"es","word":"tranquilo","ipa":"/tɾaŋˈkilo/","tr":"спокойный","pos":"прил.","ex":[{"t":"Hoy es un día muy tranquilo.","tr":"Сегодня очень спокойный день."}]},
-{"lang":"es","word":"viajar","ipa":"/bjaˈxaɾ/","tr":"путешествовать","pos":"глагол","ex":[{"t":"Me gusta viajar en tren.","tr":"Я люблю путешествовать на поезде."}]},
-{"lang":"es","word":"vida","ipa":"/ˈbiða/","tr":"жизнь","pos":"сущ.","ex":[{"t":"La vida es bella.","tr":"Жизнь прекрасна."}]},
-{"lang":"es","word":"volver","ipa":"/bolˈβeɾ/","tr":"возвращаться","pos":"глагол","ex":[{"t":"Vuelvo a casa a las seis.","tr":"Я возвращаюсь домой в шесть."}]},
-{"lang":"en","word":"serendipity","ipa":"/ˌserənˈdɪpɪti/","tr":"счастливая случайность","pos":"сущ.","ex":[{"t":"Meeting her was pure serendipity.","tr":"Встреча с ней была настоящей счастливой случайностью."}]},
-{"lang":"en","word":"bloom","ipa":"/bluːm/","tr":"цвести","pos":"глагол","ex":[{"t":"The roses bloom in June.","tr":"Розы цветут в июне."}]},
-{"lang":"en","word":"resilient","ipa":"/rɪˈzɪliənt/","tr":"стойкий","pos":"прил.","ex":[{"t":"She stays resilient after every setback.","tr":"Она остаётся стойкой после каждой неудачи."}]},
-{"lang":"en","word":"gentle","ipa":"/ˈdʒentl/","tr":"мягкий, нежный","pos":"прил.","ex":[{"t":"Use a gentle touch.","tr":"Действуйте мягко."}]},
-{"lang":"es","word":"amanecer","ipa":"/amaneˈθeɾ/","tr":"рассвет","pos":"сущ.","ex":[{"t":"Me encanta ver el amanecer.","tr":"Я люблю смотреть на рассвет."}]},
-{"lang":"es","word":"sueño","ipa":"/ˈsweɲo/","tr":"сон, мечта","pos":"сущ.","ex":[{"t":"Mi sueño es viajar por el mundo.","tr":"Моя мечта — путешествовать по миру."}]},
-{"lang":"es","word":"luz","ipa":"/luθ/","tr":"свет","pos":"сущ.","ex":[{"t":"La luz entra por la ventana.","tr":"Свет входит через окно."}]},
-{"lang":"es","word":"cariño","ipa":"/kaˈɾiɲo/","tr":"нежность, ласка","pos":"сущ.","ex":[{"t":"Lo dijo con mucho cariño.","tr":"Он сказал это с большой нежностью."}]}
+{"lang": "en", "word": "reluctant", "ipa": "/rɪˈlʌktənt/", "tr": "неохотный", "pos": "прил.", "def": "unwilling and slow to do something", "ex": [{"t": "She was reluctant to share her plans.", "tr": "Она неохотно делилась своими планами."}, {"t": "He gave a reluctant smile.", "tr": "Он неохотно улыбнулся."}]},
+{"lang": "en", "word": "accomplish", "ipa": "/əˈkɑːmplɪʃ/", "tr": "достигать, выполнять", "pos": "глагол", "def": "to succeed in doing or finishing something", "ex": [{"t": "We hope to accomplish more this year.", "tr": "Мы надеемся достичь большего в этом году."}, {"t": "It takes years to accomplish this goal.", "tr": "Чтобы достичь этой цели, нужны годы."}]},
+{"lang": "en", "word": "overwhelm", "ipa": "/ˌoʊvərˈwelm/", "tr": "подавлять, переполнять", "pos": "глагол", "def": "to affect someone so strongly that they cannot think clearly", "ex": [{"t": "Too much work can overwhelm anyone.", "tr": "Слишком много работы может подавить кого угодно."}, {"t": "Don't let the news overwhelm you.", "tr": "Не позволяй новостям тебя подавить."}]},
+{"lang": "en", "word": "reliable", "ipa": "/rɪˈlaɪəbl/", "tr": "надёжный", "pos": "прил.", "def": "able to be trusted to do what is expected", "ex": [{"t": "He is a reliable friend.", "tr": "Он надёжный друг."}, {"t": "This car is cheap and reliable.", "tr": "Эта машина дешёвая и надёжная."}]},
+{"lang": "en", "word": "hesitate", "ipa": "/ˈhezɪteɪt/", "tr": "колебаться", "pos": "глагол", "def": "to pause before doing something because you are unsure", "ex": [{"t": "Don't hesitate to ask questions.", "tr": "Не стесняйтесь задавать вопросы."}, {"t": "Why did you hesitate to answer?", "tr": "Почему ты колебалась с ответом?"}]},
+{"lang": "en", "word": "genuine", "ipa": "/ˈdʒenjuɪn/", "tr": "подлинный, искренний", "pos": "прил.", "def": "real and honest, not fake", "ex": [{"t": "It was a genuine mistake.", "tr": "Это была настоящая ошибка."}, {"t": "Her interest seemed genuine.", "tr": "Её интерес казался искренним."}]},
+{"lang": "en", "word": "consistent", "ipa": "/kənˈsɪstənt/", "tr": "последовательный", "pos": "прил.", "def": "always behaving or happening in the same way", "ex": [{"t": "Consistent practice leads to progress.", "tr": "Регулярная практика ведёт к прогрессу."}, {"t": "His results are not consistent.", "tr": "Его результаты нестабильны."}]},
+{"lang": "en", "word": "considerable", "ipa": "/kənˈsɪdərəbl/", "tr": "значительный", "pos": "прил.", "def": "large in amount or importance", "ex": [{"t": "The project needs considerable effort.", "tr": "Проекту нужны значительные усилия."}, {"t": "She has considerable experience.", "tr": "У неё большой опыт."}]},
+{"lang": "en", "word": "emphasize", "ipa": "/ˈemfəsaɪz/", "tr": "подчёркивать", "pos": "глагол", "def": "to show that something is especially important", "ex": [{"t": "I want to emphasize one thing.", "tr": "Я хочу подчеркнуть одну вещь."}, {"t": "The teacher will emphasize the key points.", "tr": "Учитель подчеркнёт главные моменты."}]},
+{"lang": "en", "word": "inevitable", "ipa": "/ɪnˈevɪtəbl/", "tr": "неизбежный", "pos": "прил.", "def": "certain to happen and impossible to avoid", "ex": [{"t": "Change is inevitable.", "tr": "Перемены неизбежны."}, {"t": "The delay was inevitable.", "tr": "Задержка была неизбежной."}]},
+{"lang": "en", "word": "anticipate", "ipa": "/ænˈtɪsɪpeɪt/", "tr": "ожидать, предвидеть", "pos": "глагол", "def": "to expect something and prepare for it", "ex": [{"t": "We anticipate heavy traffic today.", "tr": "Сегодня мы ждём сильных пробок."}, {"t": "Try to anticipate her questions.", "tr": "Постарайся предугадать её вопросы."}]},
+{"lang": "en", "word": "contribute", "ipa": "/kənˈtrɪbjuːt/", "tr": "вносить вклад", "pos": "глагол", "def": "to give something to help achieve a result", "ex": [{"t": "Everyone should contribute to the discussion.", "tr": "Каждый должен внести вклад в обсуждение."}, {"t": "Sleep can contribute to good health.", "tr": "Сон способствует хорошему здоровью."}]},
+{"lang": "en", "word": "appropriate", "ipa": "/əˈproʊpriət/", "tr": "подходящий", "pos": "прил.", "def": "suitable for a particular situation", "ex": [{"t": "Wear appropriate clothes for the interview.", "tr": "Надень подходящую одежду на собеседование."}, {"t": "Is this the appropriate time to talk?", "tr": "Подходящее ли сейчас время для разговора?"}]},
+{"lang": "en", "word": "acknowledge", "ipa": "/əkˈnɑːlɪdʒ/", "tr": "признавать", "pos": "глагол", "def": "to accept that something is true", "ex": [{"t": "You must acknowledge your mistakes.", "tr": "Нужно признавать свои ошибки."}, {"t": "I want to acknowledge your help.", "tr": "Хочу отметить вашу помощь."}]},
+{"lang": "en", "word": "straightforward", "ipa": "/ˌstreɪtˈfɔːrwərd/", "tr": "простой, понятный", "pos": "прил.", "def": "easy to understand or do", "ex": [{"t": "The instructions are straightforward.", "tr": "Инструкции простые и понятные."}, {"t": "She gave a straightforward answer.", "tr": "Она дала прямой ответ."}]},
+{"lang": "en", "word": "whereas", "ipa": "/werˈæz/", "tr": "тогда как", "pos": "союз", "def": "used to show a contrast between two things", "ex": [{"t": "I like tea, whereas he prefers coffee.", "tr": "Я люблю чай, тогда как он предпочитает кофе."}, {"t": "Some cities are noisy, whereas others are calm.", "tr": "Одни города шумные, тогда как другие спокойные."}]},
+{"lang": "en", "word": "deliberately", "ipa": "/dɪˈlɪbərətli/", "tr": "намеренно", "pos": "нареч.", "def": "on purpose, not by accident", "ex": [{"t": "He deliberately ignored the rule.", "tr": "Он намеренно проигнорировал правило."}, {"t": "She deliberately spoke slowly.", "tr": "Она говорила нарочито медленно."}]},
+{"lang": "en", "word": "prioritize", "ipa": "/praɪˈɔːrətaɪz/", "tr": "расставлять приоритеты", "pos": "глагол", "def": "to decide what is most important and do it first", "ex": [{"t": "You need to prioritize your tasks.", "tr": "Нужно расставить приоритеты в задачах."}, {"t": "Let's prioritize health this year.", "tr": "Давай сделаем здоровье приоритетом в этом году."}]},
+{"lang": "en", "word": "insight", "ipa": "/ˈɪnsaɪt/", "tr": "понимание, озарение", "pos": "сущ.", "def": "a clear understanding of something complex", "ex": [{"t": "The book gave me valuable insight.", "tr": "Книга дала мне ценное понимание."}, {"t": "Her insight changed the plan.", "tr": "Её озарение изменило план."}]},
+{"lang": "en", "word": "outcome", "ipa": "/ˈaʊtkʌm/", "tr": "результат", "pos": "сущ.", "def": "the result of an action or process", "ex": [{"t": "We are happy with the outcome.", "tr": "Мы довольны результатом."}, {"t": "The outcome was hard to predict.", "tr": "Исход было трудно предсказать."}]},
+{"lang": "en", "word": "cope", "ipa": "/koʊp/", "tr": "справляться", "pos": "глагол", "def": "to deal with a difficult situation", "ex": [{"t": "How do you cope with stress?", "tr": "Как ты справляешься со стрессом?"}, {"t": "She learned to cope on her own.", "tr": "Она научилась справляться сама."}]},
+{"lang": "en", "word": "thrive", "ipa": "/θraɪv/", "tr": "процветать", "pos": "глагол", "def": "to grow and be healthy or successful", "ex": [{"t": "Plants thrive in sunlight.", "tr": "Растения прекрасно растут на солнце."}, {"t": "Some people thrive under pressure.", "tr": "Некоторые люди расцветают под давлением."}]},
+{"lang": "en", "word": "mindset", "ipa": "/ˈmaɪndset/", "tr": "образ мышления", "pos": "сущ.", "def": "a set of attitudes and beliefs", "ex": [{"t": "A positive mindset helps a lot.", "tr": "Позитивный настрой очень помогает."}, {"t": "He changed his mindset about failure.", "tr": "Он изменил отношение к неудачам."}]},
+{"lang": "en", "word": "overcome", "ipa": "/ˌoʊvərˈkʌm/", "tr": "преодолевать", "pos": "глагол", "def": "to succeed in dealing with a problem", "ex": [{"t": "She managed to overcome her fear.", "tr": "Ей удалось преодолеть свой страх."}, {"t": "We can overcome any obstacle together.", "tr": "Вместе мы преодолеем любое препятствие."}]},
+{"lang": "en", "word": "sustainable", "ipa": "/səˈsteɪnəbl/", "tr": "устойчивый", "pos": "прил.", "def": "able to continue without harming the environment or running out", "ex": [{"t": "We need sustainable energy.", "tr": "Нам нужна устойчивая энергетика."}, {"t": "A sustainable routine is easier to keep.", "tr": "Устойчивый распорядок легче соблюдать."}]},
+{"lang": "en", "word": "ambiguous", "ipa": "/æmˈbɪɡjuəs/", "tr": "неоднозначный", "pos": "прил.", "def": "having more than one possible meaning", "ex": [{"t": "The answer was ambiguous.", "tr": "Ответ был неоднозначным."}, {"t": "His message sounded ambiguous.", "tr": "Его сообщение прозвучало двусмысленно."}]},
+{"lang": "en", "word": "compelling", "ipa": "/kəmˈpelɪŋ/", "tr": "убедительный, захватывающий", "pos": "прил.", "def": "very interesting or convincing", "ex": [{"t": "She made a compelling argument.", "tr": "Она привела убедительный довод."}, {"t": "It's a compelling story.", "tr": "Это захватывающая история."}]},
+{"lang": "en", "word": "profound", "ipa": "/prəˈfaʊnd/", "tr": "глубокий", "pos": "прил.", "def": "very deep or strong", "ex": [{"t": "The film had a profound effect on me.", "tr": "Фильм произвёл на меня глубокое впечатление."}, {"t": "He felt a profound sense of peace.", "tr": "Он ощутил глубокое спокойствие."}]},
+{"lang": "en", "word": "undermine", "ipa": "/ˌʌndərˈmaɪn/", "tr": "подрывать", "pos": "глагол", "def": "to make something weaker, little by little", "ex": [{"t": "Constant doubt can undermine your confidence.", "tr": "Постоянные сомнения могут подорвать уверенность."}, {"t": "Don't undermine her efforts.", "tr": "Не обесценивай её усилия."}]},
+{"lang": "en", "word": "tolerate", "ipa": "/ˈtɑːləreɪt/", "tr": "терпеть", "pos": "глагол", "def": "to accept something unpleasant without complaining", "ex": [{"t": "I can't tolerate rude behavior.", "tr": "Я не терплю грубого поведения."}, {"t": "She can tolerate noise better than I can.", "tr": "Она переносит шум лучше меня."}]},
+{"lang": "en", "word": "relevant", "ipa": "/ˈreləvənt/", "tr": "уместный", "pos": "прил.", "def": "connected to what is being discussed", "ex": [{"t": "Please include only relevant details.", "tr": "Укажите только уместные детали."}, {"t": "Is this question relevant to our topic?", "tr": "Относится ли этот вопрос к нашей теме?"}]},
+{"lang": "en", "word": "aspect", "ipa": "/ˈæspekt/", "tr": "аспект", "pos": "сущ.", "def": "one part of a situation or idea", "ex": [{"t": "Health is an important aspect of life.", "tr": "Здоровье — важный аспект жизни."}, {"t": "Consider every aspect before deciding.", "tr": "Рассмотри каждый аспект перед решением."}]},
+{"lang": "en", "word": "obstacle", "ipa": "/ˈɑːbstəkl/", "tr": "препятствие", "pos": "сущ.", "def": "something that blocks your way or progress", "ex": [{"t": "Lack of time is a common obstacle.", "tr": "Нехватка времени — частое препятствие."}, {"t": "He saw every obstacle as a lesson.", "tr": "Он видел в каждом препятствии урок."}]},
+{"lang": "en", "word": "initiative", "ipa": "/ɪˈnɪʃətɪv/", "tr": "инициатива", "pos": "сущ.", "def": "the ability to act without being told what to do", "ex": [{"t": "She showed great initiative at work.", "tr": "Она проявила большую инициативу на работе."}, {"t": "Take the initiative and call him.", "tr": "Прояви инициативу и позвони ему."}]},
+{"lang": "en", "word": "elaborate", "ipa": "/ɪˈlæbəreɪt/", "tr": "уточнять, развивать мысль", "pos": "глагол", "def": "to give more details about something", "ex": [{"t": "Could you elaborate on that idea?", "tr": "Не могли бы вы подробнее рассказать об этой идее?"}, {"t": "He didn't elaborate on his plans.", "tr": "Он не стал распространяться о планах."}]},
+{"lang": "en", "word": "nevertheless", "ipa": "/ˌnevərðəˈles/", "tr": "тем не менее", "pos": "нареч.", "def": "in spite of what has just been said", "ex": [{"t": "It was raining; nevertheless, we went out.", "tr": "Шёл дождь, тем не менее мы вышли."}, {"t": "The plan is risky. Nevertheless, I like it.", "tr": "План рискованный. Тем не менее он мне нравится."}]},
+{"lang": "en", "word": "preliminary", "ipa": "/prɪˈlɪmɪneri/", "tr": "предварительный", "pos": "прил.", "def": "coming before the main event or result", "ex": [{"t": "These are only preliminary results.", "tr": "Это лишь предварительные результаты."}, {"t": "We had a preliminary meeting.", "tr": "У нас была предварительная встреча."}]},
+{"lang": "en", "word": "persuade", "ipa": "/pərˈsweɪd/", "tr": "убеждать", "pos": "глагол", "def": "to make someone agree to do something", "ex": [{"t": "I tried to persuade him to stay.", "tr": "Я пыталась убедить его остаться."}, {"t": "She can persuade anyone.", "tr": "Она может убедить кого угодно."}]},
+{"lang": "en", "word": "reveal", "ipa": "/rɪˈviːl/", "tr": "раскрывать", "pos": "глагол", "def": "to make something known", "ex": [{"t": "The test will reveal the truth.", "tr": "Тест раскроет правду."}, {"t": "I can't reveal the secret.", "tr": "Я не могу раскрыть секрет."}]},
+{"lang": "en", "word": "bold", "ipa": "/boʊld/", "tr": "смелый", "pos": "прил.", "def": "brave and confident", "ex": [{"t": "That was a bold decision.", "tr": "Это было смелое решение."}, {"t": "She chose a bold color for the wall.", "tr": "Она выбрала для стены яркий смелый цвет."}]},
+{"lang": "en", "word": "gather", "ipa": "/ˈɡæðər/", "tr": "собирать", "pos": "глагол", "def": "to bring things or people together", "ex": [{"t": "Let's gather some ideas first.", "tr": "Давай сначала соберём идеи."}, {"t": "Friends gather at our place on Sundays.", "tr": "По воскресеньям друзья собираются у нас."}]},
+{"lang": "en", "word": "reinforce", "ipa": "/ˌriːɪnˈfɔːrs/", "tr": "укреплять", "pos": "глагол", "def": "to make something stronger", "ex": [{"t": "Repetition helps reinforce memory.", "tr": "Повторение помогает укрепить память."}, {"t": "The new rule will reinforce discipline.", "tr": "Новое правило укрепит дисциплину."}]},
+{"lang": "en", "word": "flexible", "ipa": "/ˈfleksəbl/", "tr": "гибкий", "pos": "прил.", "def": "able to change easily", "ex": [{"t": "I have a flexible schedule.", "tr": "У меня гибкий график."}, {"t": "A flexible mind learns faster.", "tr": "Гибкий ум учится быстрее."}]},
+{"lang": "en", "word": "assume", "ipa": "/əˈsuːm/", "tr": "предполагать", "pos": "глагол", "def": "to believe something without proof", "ex": [{"t": "Don't assume the worst.", "tr": "Не предполагай худшего."}, {"t": "I assume you are coming.", "tr": "Полагаю, ты придёшь."}]},
+{"lang": "en", "word": "disregard", "ipa": "/ˌdɪsrɪˈɡɑːrd/", "tr": "игнорировать", "pos": "глагол", "def": "to ignore something as unimportant", "ex": [{"t": "Please disregard my last message.", "tr": "Пожалуйста, проигнорируйте моё последнее сообщение."}, {"t": "He chose to disregard the warning.", "tr": "Он решил проигнорировать предупреждение."}]},
+{"lang": "en", "word": "perspective", "ipa": "/pərˈspektɪv/", "tr": "точка зрения", "pos": "сущ.", "def": "a particular way of thinking about something", "ex": [{"t": "Travel gives you a new perspective.", "tr": "Путешествия дают новый взгляд."}, {"t": "Try to see it from my perspective.", "tr": "Попробуй взглянуть на это с моей точки зрения."}]},
+{"lang": "en", "word": "fragile", "ipa": "/ˈfrædʒəl/", "tr": "хрупкий", "pos": "прил.", "def": "easily broken or damaged", "ex": [{"t": "Be careful, the glass is fragile.", "tr": "Осторожно, стекло хрупкое."}, {"t": "Trust is fragile.", "tr": "Доверие хрупко."}]},
+{"lang": "en", "word": "commitment", "ipa": "/kəˈmɪtmənt/", "tr": "обязательство", "pos": "сущ.", "def": "a promise or a strong dedication to something", "ex": [{"t": "Learning needs daily commitment.", "tr": "Учёба требует ежедневной самоотдачи."}, {"t": "He made a commitment to exercise.", "tr": "Он взял обязательство заниматься спортом."}]},
+{"lang": "en", "word": "rely", "ipa": "/rɪˈlaɪ/", "tr": "полагаться", "pos": "глагол", "def": "to depend on someone or something", "ex": [{"t": "You can rely on me.", "tr": "Ты можешь на меня положиться."}, {"t": "Many people rely on coffee in the morning.", "tr": "Многие утром полагаются на кофе."}]},
+{"lang": "en", "word": "subtle", "ipa": "/ˈsʌtl/", "tr": "тонкий, едва заметный", "pos": "прил.", "def": "not obvious; delicate", "ex": [{"t": "There is a subtle difference in meaning.", "tr": "Есть тонкая разница в значении."}, {"t": "She gave a subtle hint.", "tr": "Она тонко намекнула."}]},
+{"lang": "es", "word": "aprovechar", "ipa": "/aproβeˈtʃaɾ/", "tr": "использовать, воспользоваться", "pos": "глагол", "def": "usar bien algo o una oportunidad", "ex": [{"t": "Quiero aprovechar el fin de semana.", "tr": "Хочу воспользоваться выходными."}, {"t": "Hay que aprovechar el buen tiempo.", "tr": "Нужно пользоваться хорошей погодой."}]},
+{"lang": "es", "word": "conseguir", "ipa": "/konseˈɣiɾ/", "tr": "добиваться, получать", "pos": "глагол", "def": "llegar a tener lo que se quería", "ex": [{"t": "Quiero conseguir un trabajo nuevo.", "tr": "Хочу получить новую работу."}, {"t": "Es difícil conseguir entradas.", "tr": "Трудно достать билеты."}]},
+{"lang": "es", "word": "acordarse", "ipa": "/akoɾˈðaɾse/", "tr": "помнить, вспоминать", "pos": "глагол", "def": "tener algo en la memoria", "ex": [{"t": "Es difícil acordarse de todo.", "tr": "Трудно всё помнить."}, {"t": "Hay que acordarse de las llaves.", "tr": "Нужно не забыть про ключи."}]},
+{"lang": "es", "word": "extrañar", "ipa": "/ekstɾaˈɲaɾ/", "tr": "скучать по", "pos": "глагол", "def": "sentir la falta de alguien o de algo", "ex": [{"t": "Voy a extrañar a mi familia.", "tr": "Я буду скучать по семье."}, {"t": "Siempre voy a extrañar mi casa.", "tr": "Я всегда буду скучать по дому."}]},
+{"lang": "es", "word": "preocuparse", "ipa": "/pɾeokuˈpaɾse/", "tr": "беспокоиться", "pos": "глагол", "def": "sentir inquietud por algo", "ex": [{"t": "No sirve de nada preocuparse tanto.", "tr": "Нет смысла так беспокоиться."}, {"t": "Es normal preocuparse por los hijos.", "tr": "Нормально беспокоиться о детях."}]},
+{"lang": "es", "word": "disfrutar", "ipa": "/disfɾuˈtaɾ/", "tr": "наслаждаться", "pos": "глагол", "def": "sentir placer con algo", "ex": [{"t": "Me gusta disfrutar de la música.", "tr": "Мне нравится наслаждаться музыкой."}, {"t": "Queremos disfrutar de las vacaciones.", "tr": "Мы хотим насладиться отпуском."}]},
+{"lang": "es", "word": "recomendar", "ipa": "/rekomenˈdaɾ/", "tr": "рекомендовать", "pos": "глагол", "def": "decir que algo es bueno para alguien", "ex": [{"t": "¿Puedes recomendar un libro?", "tr": "Можешь порекомендовать книгу?"}, {"t": "Voy a recomendar este restaurante.", "tr": "Я порекомендую этот ресторан."}]},
+{"lang": "es", "word": "mejorar", "ipa": "/mexoˈɾaɾ/", "tr": "улучшать", "pos": "глагол", "def": "hacer que algo sea mejor", "ex": [{"t": "Quiero mejorar mi español.", "tr": "Хочу улучшить свой испанский."}, {"t": "Practicar ayuda a mejorar.", "tr": "Практика помогает улучшаться."}]},
+{"lang": "es", "word": "esfuerzo", "ipa": "/esˈfweɾθo/", "tr": "усилие", "pos": "сущ.", "def": "energía que se usa para hacer algo difícil", "ex": [{"t": "Aprender requiere mucho esfuerzo.", "tr": "Учёба требует больших усилий."}, {"t": "Valoro tu esfuerzo.", "tr": "Я ценю твои усилия."}]},
+{"lang": "es", "word": "recuerdo", "ipa": "/reˈkweɾðo/", "tr": "воспоминание, сувенир", "pos": "сущ.", "def": "imagen de algo que pasó, u objeto de un viaje", "ex": [{"t": "Tengo un recuerdo bonito de ese día.", "tr": "У меня тёплое воспоминание об этом дне."}, {"t": "Te traigo un recuerdo de Madrid.", "tr": "Привезу тебе сувенир из Мадрида."}]},
+{"lang": "es", "word": "costumbre", "ipa": "/kosˈtumbɾe/", "tr": "привычка, обычай", "pos": "сущ.", "def": "algo que se hace siempre", "ex": [{"t": "Es mi costumbre madrugar.", "tr": "Это моя привычка — рано вставать."}, {"t": "Una costumbre de mi país es cenar tarde.", "tr": "В моей стране есть обычай поздно ужинать."}]},
+{"lang": "es", "word": "ambiente", "ipa": "/amˈbjente/", "tr": "атмосфера, среда", "pos": "сущ.", "def": "el aire o la atmósfera de un lugar", "ex": [{"t": "En la oficina hay buen ambiente.", "tr": "В офисе хорошая атмосфера."}, {"t": "Cuidar el medio ambiente es importante.", "tr": "Беречь окружающую среду важно."}]},
+{"lang": "es", "word": "propio", "ipa": "/ˈpɾopjo/", "tr": "собственный", "pos": "прил.", "def": "que pertenece a una persona", "ex": [{"t": "Quiero tener mi propio negocio.", "tr": "Хочу иметь собственное дело."}, {"t": "Cada uno tiene su propio ritmo.", "tr": "У каждого свой ритм."}]},
+{"lang": "es", "word": "sin embargo", "ipa": "/sin emˈbaɾɣo/", "tr": "однако", "pos": "союз", "def": "pero; a pesar de eso", "ex": [{"t": "Estoy cansada; sin embargo, voy a salir.", "tr": "Я устала, однако пойду гулять."}, {"t": "Es caro; sin embargo, es muy bueno.", "tr": "Дорого, однако очень хорошо."}]},
+{"lang": "es", "word": "todavía", "ipa": "/toðaˈβia/", "tr": "ещё", "pos": "нареч.", "def": "hasta ahora, aún", "ex": [{"t": "Todavía no he terminado.", "tr": "Я ещё не закончила."}, {"t": "¿Todavía vives allí?", "tr": "Ты всё ещё там живёшь?"}]},
+{"lang": "es", "word": "además", "ipa": "/aðeˈmas/", "tr": "кроме того", "pos": "нареч.", "def": "también; y, aparte de eso", "ex": [{"t": "Es barato y, además, rico.", "tr": "Это дёшево и, кроме того, вкусно."}, {"t": "Además, hoy hace sol.", "tr": "Кроме того, сегодня солнечно."}]},
+{"lang": "es", "word": "de repente", "ipa": "/de reˈpente/", "tr": "вдруг", "pos": "нареч.", "def": "de forma inesperada", "ex": [{"t": "De repente empezó a llover.", "tr": "Вдруг начался дождь."}, {"t": "Se fue la luz de repente.", "tr": "Свет вдруг погас."}]},
+{"lang": "es", "word": "darse cuenta", "ipa": "/ˈdaɾse ˈkwenta/", "tr": "осознавать, замечать", "pos": "глагол", "def": "empezar a ver algo que antes no se veía", "ex": [{"t": "Es importante darse cuenta de los errores.", "tr": "Важно осознавать свои ошибки."}, {"t": "Tardó mucho en darse cuenta del problema.", "tr": "Он долго не мог заметить проблему."}]},
+{"lang": "es", "word": "suceder", "ipa": "/suθeˈðeɾ/", "tr": "случаться", "pos": "глагол", "def": "pasar, ocurrir", "ex": [{"t": "¿Qué puede suceder si no vamos?", "tr": "Что может случиться, если мы не пойдём?"}, {"t": "Esas cosas suelen suceder.", "tr": "Такие вещи случаются."}]},
+{"lang": "es", "word": "desarrollar", "ipa": "/desaroˈʎaɾ/", "tr": "развивать", "pos": "глагол", "def": "hacer crecer o mejorar algo", "ex": [{"t": "Quiero desarrollar mis ideas.", "tr": "Хочу развить свои идеи."}, {"t": "Leer ayuda a desarrollar la imaginación.", "tr": "Чтение помогает развивать воображение."}]},
+{"lang": "es", "word": "resolver", "ipa": "/resolˈβeɾ/", "tr": "решать (проблему)", "pos": "глагол", "def": "encontrar la solución a un problema", "ex": [{"t": "Vamos a resolver el problema juntos.", "tr": "Мы решим проблему вместе."}, {"t": "No es fácil resolver este ejercicio.", "tr": "Это упражнение нелегко решить."}]},
+{"lang": "es", "word": "evitar", "ipa": "/eβiˈtaɾ/", "tr": "избегать", "pos": "глагол", "def": "hacer lo posible para que algo no pase", "ex": [{"t": "Intento evitar el azúcar.", "tr": "Я стараюсь избегать сахара."}, {"t": "Para evitar problemas, llama antes.", "tr": "Чтобы избежать проблем, позвони заранее."}]},
+{"lang": "es", "word": "lograr", "ipa": "/loˈɣɾaɾ/", "tr": "добиваться", "pos": "глагол", "def": "conseguir lo que se desea", "ex": [{"t": "Quiero lograr mis metas.", "tr": "Хочу достичь своих целей."}, {"t": "Con paciencia puedes lograr todo.", "tr": "С терпением можно добиться всего."}]},
+{"lang": "es", "word": "entorno", "ipa": "/enˈtoɾno/", "tr": "окружение", "pos": "сущ.", "def": "lo que rodea a una persona o un lugar", "ex": [{"t": "Un buen entorno ayuda a estudiar.", "tr": "Хорошее окружение помогает учиться."}, {"t": "Trabajo en un entorno tranquilo.", "tr": "Я работаю в спокойной обстановке."}]},
+{"lang": "es", "word": "convivir", "ipa": "/kombiˈβiɾ/", "tr": "жить вместе, уживаться", "pos": "глагол", "def": "vivir con otras personas", "ex": [{"t": "No es fácil convivir con tantos amigos.", "tr": "Нелегко жить вместе с таким количеством друзей."}, {"t": "Aprendemos a convivir en la escuela.", "tr": "В школе мы учимся ладить."}]},
+{"lang": "es", "word": "tardar", "ipa": "/taɾˈðaɾ/", "tr": "занимать время", "pos": "глагол", "def": "usar mucho tiempo en algo", "ex": [{"t": "Voy a tardar diez minutos.", "tr": "Мне понадобится десять минут."}, {"t": "No quiero tardar mucho.", "tr": "Не хочу долго возиться."}]},
+{"lang": "es", "word": "reunirse", "ipa": "/reuˈniɾse/", "tr": "собираться", "pos": "глагол", "def": "juntarse varias personas", "ex": [{"t": "Nos gusta reunirse los domingos.", "tr": "Мы любим собираться по воскресеньям."}, {"t": "Es difícil reunirse todos.", "tr": "Трудно собраться всем вместе."}]},
+{"lang": "es", "word": "madrugar", "ipa": "/maðɾuˈɣaɾ/", "tr": "вставать рано", "pos": "глагол", "def": "levantarse muy temprano", "ex": [{"t": "No me gusta madrugar.", "tr": "Не люблю вставать рано."}, {"t": "Para madrugar, hay que dormir pronto.", "tr": "Чтобы рано вставать, нужно рано ложиться."}]},
+{"lang": "es", "word": "alegrarse", "ipa": "/aleˈɣɾaɾse/", "tr": "радоваться", "pos": "глагол", "def": "sentir alegría", "ex": [{"t": "Es bonito alegrarse por los demás.", "tr": "Приятно радоваться за других."}, {"t": "Hay que alegrarse con las buenas noticias.", "tr": "Надо радоваться хорошим новостям."}]},
+{"lang": "es", "word": "comportamiento", "ipa": "/kompoɾtaˈmjento/", "tr": "поведение", "pos": "сущ.", "def": "la forma de actuar de una persona", "ex": [{"t": "Su comportamiento fue muy amable.", "tr": "Его поведение было очень любезным."}, {"t": "Cambió su comportamiento.", "tr": "Он изменил своё поведение."}]},
+{"lang": "es", "word": "sencillo", "ipa": "/senˈθiʎo/", "tr": "простой", "pos": "прил.", "def": "fácil y sin complicaciones", "ex": [{"t": "Es un plan sencillo.", "tr": "Это простой план."}, {"t": "Fue un examen sencillo.", "tr": "Это был лёгкий экзамен."}]},
+{"lang": "es", "word": "equivocarse", "ipa": "/ekiβoˈkaɾse/", "tr": "ошибаться", "pos": "глагол", "def": "cometer un error", "ex": [{"t": "Es normal equivocarse al aprender.", "tr": "Нормально ошибаться, когда учишься."}, {"t": "No tengas miedo de equivocarse.", "tr": "Не бойся ошибаться."}]},
+{"lang": "es", "word": "sentirse", "ipa": "/senˈtiɾse/", "tr": "чувствовать себя", "pos": "глагол", "def": "tener un estado de ánimo o de salud", "ex": [{"t": "Es importante sentirse bien.", "tr": "Важно чувствовать себя хорошо."}, {"t": "Nadie debería sentirse solo.", "tr": "Никто не должен чувствовать себя одиноким."}]},
+{"lang": "es", "word": "descubrir", "ipa": "/deskuˈβɾiɾ/", "tr": "открывать", "pos": "глагол", "def": "encontrar algo nuevo", "ex": [{"t": "Me gusta descubrir lugares nuevos.", "tr": "Мне нравится открывать новые места."}, {"t": "Vamos a descubrir la verdad.", "tr": "Мы узнаем правду."}]},
+{"lang": "es", "word": "mudarse", "ipa": "/muˈðaɾse/", "tr": "переезжать", "pos": "глагол", "def": "cambiar de casa o de ciudad", "ex": [{"t": "Mis padres quieren mudarse cerca del mar.", "tr": "Мои родители хотят переехать к морю."}, {"t": "Es caro mudarse a la capital.", "tr": "Переезжать в столицу дорого."}]},
+{"lang": "es", "word": "compartir", "ipa": "/kompaɾˈtiɾ/", "tr": "делиться", "pos": "глагол", "def": "dar una parte de algo a otros", "ex": [{"t": "Me gusta compartir mis recetas.", "tr": "Мне нравится делиться рецептами."}, {"t": "Es bueno compartir el tiempo con amigos.", "tr": "Хорошо проводить время с друзьями."}]},
+{"lang": "es", "word": "confiar", "ipa": "/komˈfjaɾ/", "tr": "доверять", "pos": "глагол", "def": "tener fe en alguien", "ex": [{"t": "Es difícil confiar en todos.", "tr": "Трудно доверять всем."}, {"t": "Puedes confiar en mí.", "tr": "Ты можешь мне доверять."}]},
+{"lang": "es", "word": "agotado", "ipa": "/aɣoˈtaðo/", "tr": "измотанный", "pos": "прил.", "def": "muy cansado", "ex": [{"t": "Estoy agotado después del viaje.", "tr": "Я измотан после поездки."}, {"t": "Llegó agotado a casa.", "tr": "Он пришёл домой без сил."}]},
+{"lang": "es", "word": "enterarse", "ipa": "/enteˈɾaɾse/", "tr": "узнавать (новости)", "pos": "глагол", "def": "recibir una noticia o información", "ex": [{"t": "Es fácil enterarse de todo en un pueblo.", "tr": "В деревне легко всё узнать."}, {"t": "Es mejor enterarse de las noticias temprano.", "tr": "Лучше узнавать новости пораньше."}]},
+{"lang": "es", "word": "ahorrar", "ipa": "/aoˈraɾ/", "tr": "экономить, копить", "pos": "глагол", "def": "guardar dinero o tiempo", "ex": [{"t": "Quiero ahorrar para el viaje.", "tr": "Хочу копить на поездку."}, {"t": "Cocinar en casa ayuda a ahorrar.", "tr": "Готовка дома помогает экономить."}]},
+{"lang": "es", "word": "alquilar", "ipa": "/alkiˈlaɾ/", "tr": "арендовать", "pos": "глагол", "def": "pagar por usar algo durante un tiempo", "ex": [{"t": "Vamos a alquilar un coche.", "tr": "Мы арендуем машину."}, {"t": "Es caro alquilar un piso aquí.", "tr": "Здесь дорого снимать квартиру."}]},
+{"lang": "es", "word": "mientras", "ipa": "/ˈmjentɾas/", "tr": "пока, в то время как", "pos": "союз", "def": "durante el tiempo en que pasa algo", "ex": [{"t": "Escucho música mientras cocino.", "tr": "Я слушаю музыку, пока готовлю."}, {"t": "Mientras tanto, prepara la mesa.", "tr": "А пока накрой на стол."}]},
+{"lang": "es", "word": "ya que", "ipa": "/ʝa ke/", "tr": "поскольку", "pos": "союз", "def": "porque", "ex": [{"t": "Voy a casa, ya que estoy cansada.", "tr": "Иду домой, поскольку устала."}, {"t": "Ya que estás aquí, ayúdame.", "tr": "Раз уж ты здесь, помоги мне."}]},
+{"lang": "es", "word": "encantar", "ipa": "/eŋkanˈtaɾ/", "tr": "очень нравиться", "pos": "глагол", "def": "gustar mucho", "ex": [{"t": "Creo que te va a encantar este lugar.", "tr": "Думаю, тебе очень понравится это место."}, {"t": "Nos puede encantar esta ciudad.", "tr": "Этот город может нам очень понравиться."}]},
+{"lang": "es", "word": "tener ganas", "ipa": "/teˈneɾ ˈɣanas/", "tr": "хотеть, иметь желание", "pos": "глагол", "def": "querer hacer algo", "ex": [{"t": "No suelo tener ganas de cocinar.", "tr": "Обычно мне не хочется готовить."}, {"t": "Es normal no tener ganas de salir.", "tr": "Нормально не хотеть выходить из дома."}]},
+{"lang": "es", "word": "hace falta", "ipa": "/ˈaθe ˈfalta/", "tr": "нужно", "pos": "глагол", "def": "ser necesario", "ex": [{"t": "No hace falta correr.", "tr": "Бежать не нужно."}, {"t": "Hace falta más tiempo.", "tr": "Нужно больше времени."}]},
+{"lang": "es", "word": "alrededor", "ipa": "/alɾeðeˈðoɾ/", "tr": "вокруг", "pos": "нареч.", "def": "en la zona que rodea algo", "ex": [{"t": "Hay árboles alrededor de la casa.", "tr": "Вокруг дома растут деревья."}, {"t": "Dimos un paseo alrededor del lago.", "tr": "Мы прогулялись вокруг озера."}]},
+{"lang": "es", "word": "por lo menos", "ipa": "/poɾ lo ˈmenos/", "tr": "по крайней мере", "pos": "нареч.", "def": "como mínimo", "ex": [{"t": "Estudio por lo menos una hora.", "tr": "Я занимаюсь по крайней мере час."}, {"t": "Por lo menos, inténtalo.", "tr": "По крайней мере, попробуй."}]},
+{"lang": "es", "word": "sorprender", "ipa": "/soɾpɾenˈdeɾ/", "tr": "удивлять", "pos": "глагол", "def": "causar sorpresa", "ex": [{"t": "Quiero sorprender a mi madre.", "tr": "Хочу удивить маму."}, {"t": "Nada me puede sorprender ya.", "tr": "Меня уже ничем не удивить."}]},
+{"lang": "es", "word": "echar de menos", "ipa": "/eˈtʃaɾ de ˈmenos/", "tr": "скучать по", "pos": "глагол", "def": "sentir la falta de alguien", "ex": [{"t": "Voy a echar de menos mi casa.", "tr": "Я буду скучать по дому."}, {"t": "Siempre voy a echar de menos el mar.", "tr": "Я всегда буду скучать по морю."}]}
 ];
+const OLD_SEEDS=["en|abandon", "en|achieve", "en|acquire", "en|adapt", "en|ambitious", "en|appreciate", "en|awkward", "en|benefit", "en|borrow", "en|brave", "en|challenge", "en|cozy", "en|curious", "en|daily", "en|deadline", "en|decide", "en|delicious", "en|develop", "en|efficient", "en|enough", "en|especially", "en|forgive", "en|gratitude", "en|habit", "en|honest", "en|improve", "en|journey", "en|lonely", "en|meaningful", "en|mindful", "en|nearby", "en|patient", "en|peaceful", "en|remember", "en|reliable", "en|schedule", "en|shy", "en|sincere", "en|struggle", "en|successful", "en|thoughtful", "en|trust", "en|vulnerable", "en|wander", "en|whisper", "en|worth", "es|abrazo", "es|alegría", "es|amistad", "es|aprender", "es|ayudar", "es|bonito", "es|buscar", "es|cambiar", "es|casa", "es|cerca", "es|comer", "es|conocer", "es|corazón", "es|creer", "es|cuidar", "es|dulce", "es|echar de menos", "es|empezar", "es|encontrar", "es|esperanza", "es|estrella", "es|feliz", "es|fuerte", "es|gracias", "es|hablar", "es|hermoso", "es|lejos", "es|libro", "es|luna", "es|mañana", "es|mar", "es|mejor", "es|necesitar", "es|olvidar", "es|paciencia", "es|palabra", "es|pensar", "es|querer", "es|recordar", "es|risa", "es|saber", "es|sonreír", "es|tranquilo", "es|viajar", "es|vida", "es|volver", "en|serendipity", "en|bloom", "en|resilient", "en|gentle", "es|amanecer", "es|sueño", "es|luz", "es|cariño"];
 const S={lang:"en",tab:"words",words:[],filter:"all",q:"",editing:null,formOpen:false,db:null,assets:null,ready:false,sessionCards:null,quiz:null,
   draft:{ex:[{t:"",tr:""}],img:"",aud:""}};
 try{const l=localStorage.getItem("lang_current");if(l==="en"||l==="es")S.lang=l}catch(e){}
@@ -637,10 +733,15 @@ function useLocal(){
   const mk=(w,i)=>Object.assign({id:newId(),status:"new",box:0,due:"",added:Date.now()-i,reviewed:0,img:"",aud:""},w);
   if(!Array.isArray(list))list=SAMPLES.map(mk);
   else{
-    let seeded="";try{seeded=localStorage.getItem("lang_seed_v3")||""}catch(e){}
-    if(!seeded){const have=new Set(list.map(w=>w.lang+"|"+norm(w.word)));SAMPLES.forEach((w,i)=>{if(!have.has(w.lang+"|"+norm(w.word)))list.push(mk(w,i))})}
+    let seeded="";try{seeded=localStorage.getItem("lang_seed_v4")||""}catch(e){}
+    if(!seeded){
+      const old=new Set(OLD_SEEDS.map(norm));
+      list=list.filter(w=>!old.has(norm(w.lang+"|"+w.word)));
+      const have=new Set(list.map(w=>w.lang+"|"+norm(w.word)));
+      SAMPLES.forEach((w,i)=>{if(!have.has(w.lang+"|"+norm(w.word)))list.push(mk(w,i))});
+    }
   }
-  try{localStorage.setItem("lang_seed_v3","1")}catch(e){}
+  try{localStorage.setItem("lang_seed_v4","1")}catch(e){}
   S.words=list;S.ready=true;saveLocal();renderAll();
 }
 function dbWrite(op,id,data){
@@ -789,7 +890,7 @@ function wordHtml(w){
     :'<button type="button" class="icon-btn" data-act="del" data-id="'+w.id+'" aria-label="Удалить слово">'+ICON.trash+'</button>';
   return '<article class="panel word" data-id="'+w.id+'">'+
     '<div class="top"><div>'+(w.pos?'<div class="pos">'+esc(w.pos)+'</div>':'')+'<h3>'+esc(w.word)+'</h3>'+(w.ipa?'<div class="ipa">'+esc(w.ipa)+'</div>':'')+'</div></div>'+
-    '<div class="tr">'+esc(w.tr)+'</div>'+
+    '<div class="tr">'+esc(w.tr)+'</div>'+(w.def?'<div class="wdef" lang="'+w.lang+'">'+esc(w.def)+'</div>':'')+
     (ex?'<ul>'+ex+'</ul>':'')+img+
     '<div class="foot"><button type="button" class="status '+w.status+'" data-act="status" data-id="'+w.id+'" title="Сменить статус">'+ICON[w.status]+' '+STAT[w.status]+'</button>'+
     '<div class="tools">'+(w.sample?'<span class="tag-ex" style="align-self:center;margin-right:4px">пример</span>':'')+
@@ -827,6 +928,7 @@ function renderForm(focusId){
   p.innerHTML='<form class="form" id="wform" novalidate><h2 style="font-size:32px">'+(S.editing?"Изменить слово":"Новое слово")+'</h2>'+
     '<div class="row"><label>Слово<input type="text" id="f-word" value="'+esc(d.word)+'" autocomplete="off" lang="'+S.lang+'"></label>'+
     '<label>Транскрипция<input type="text" id="f-ipa" value="'+esc(d.ipa)+'" autocomplete="off" placeholder="/ˈɛksəmpl/" style="font-family:var(--ipa)"></label></div>'+
+    '<label>Значение на изучаемом языке<input type="text" id="f-def" value="'+esc(d.def||"")+'" autocomplete="off" lang="'+S.lang+'" placeholder="'+(S.lang==="en"?"a short definition in English":"una definición corta en español")+'"></label>'+
     '<div class="row"><label>Перевод<input type="text" id="f-tr" value="'+esc(d.tr)+'" autocomplete="off"></label>'+
     '<label>Часть речи<select id="f-pos">'+POS.map(x=>'<option value="'+x+'"'+(d.pos===x?" selected":"")+'>'+(x||"не указана")+'</option>').join("")+'</select></label>'+
     '<label>Статус<select id="f-status">'+Object.keys(STAT).map(k=>'<option value="'+k+'"'+(d.status===k?" selected":"")+'>'+STAT[k]+'</option>').join("")+'</select></label></div>'+
@@ -839,14 +941,14 @@ function renderForm(focusId){
 function collectDraft(){
   if(!$("#wform"))return;
   const d=S.draft;
-  d.word=$("#f-word").value;d.ipa=$("#f-ipa").value;d.tr=$("#f-tr").value;d.pos=$("#f-pos").value;d.status=$("#f-status").value;
+  d.word=$("#f-word").value;d.ipa=$("#f-ipa").value;d.tr=$("#f-tr").value;d.def=$("#f-def").value;d.pos=$("#f-pos").value;d.status=$("#f-status").value;
   d.ex=$$(".exrow").map(r=>({t:$('[data-ex="t"]',r).value,tr:$('[data-ex="tr"]',r).value}));
   if(!d.ex.length)d.ex=[{t:"",tr:""}];
 }
 function openForm(id){
   S.editing=id||null;S.formOpen=true;
   if(id){const w=S.words.find(x=>x.id===id);if(!w)return;
-    S.draft={word:w.word,ipa:w.ipa||"",tr:w.tr,pos:w.pos||"",status:w.status,ex:(w.ex&&w.ex.length?w.ex.map(e=>({t:e.t,tr:e.tr||""})):[{t:"",tr:""}]),img:w.img||""};
+    S.draft={word:w.word,ipa:w.ipa||"",tr:w.tr,def:w.def||"",pos:w.pos||"",status:w.status,ex:(w.ex&&w.ex.length?w.ex.map(e=>({t:e.t,tr:e.tr||""})):[{t:"",tr:""}]),img:w.img||""};
   }else S.draft=blank();
   renderForm();$("#formPanel").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
@@ -858,7 +960,7 @@ async function submitForm(){
   if(!tr){toast("Добавьте перевод");$("#f-tr").focus();return}
   let ipa=d.ipa.trim();if(ipa&&!/^[\/\[]/.test(ipa))ipa="/"+ipa+"/";
   const ex=d.ex.map(e=>({t:e.t.trim(),tr:e.tr.trim()})).filter(e=>e.t);
-  const base={lang:S.lang,word,ipa,tr,pos:d.pos,ex,img:d.img||""};
+  const base={lang:S.lang,word,ipa,tr,def:(d.def||"").trim(),pos:d.pos,ex,img:d.img||""};
   if(S.editing){
     const old=S.words.find(x=>x.id===S.editing);if(!old)return;
     const upd=Object.assign({},old,base);
@@ -917,24 +1019,20 @@ function startCards(deck){
   renderCards();
 }
 function faceHtml(w,side){
-  const front=S.cardDir==="fw"?"word":"tr";
-  const isWord=(side==="front")===(front==="word");
-  const ex=(w.ex||[])[0];
-  const body=isWord
-    ?'<div class="hint">'+LANG[w.lang].name+'</div><h2 lang="'+w.lang+'">'+esc(w.word)+'</h2>'+(w.ipa?'<div class="ipa">'+esc(w.ipa)+'</div>':'')
-    :'<div class="hint">Перевод</div><h2>'+esc(w.tr)+'</h2>'+(w.pos?'<div class="ipa">'+esc(w.pos)+'</div>':"");
-  const sent=side==="back"&&ex?'<div class="sent">'+esc(ex.t)+(ex.tr?'<small>'+esc(ex.tr)+'</small>':"")+'</div>':"";
-  return '<div class="face '+side+'">'+body+sent+'</div>';
+  if(side==="front"){
+    return '<div class="face front"><div class="hint">'+LANG[w.lang].name+(w.pos?' · '+esc(w.pos):'')+'</div><h2 lang="'+w.lang+'">'+esc(w.word)+'</h2>'+(w.ipa?'<div class="ipa">'+esc(w.ipa)+'</div>':'')+
+      (w.def?'<div class="cdef" lang="'+w.lang+'">'+esc(w.def)+'</div>':'')+'<div class="ctr">'+esc(w.tr)+'</div></div>';
+  }
+  const ex=(w.ex||[]).slice(0,2);
+  return '<div class="face back"><div class="hint">Примеры</div>'+(ex.length?ex.map(e=>'<div class="sent" lang="'+w.lang+'">'+esc(e.t)+(e.tr?'<small>'+esc(e.tr)+'</small>':'')+'</div>').join(""):'<div class="ipa">Добавьте предложения в словаре</div>')+'</div>';
 }
 function renderCards(){
   const v=$("#view-cards"),s=S.sessionCards;
   if(!s){
-    const dirs=[["fw","Слово → перевод"],["bw","Перевод → слово"]];
     v.innerHTML='<div class="panel" style="display:flex;flex-direction:column;gap:20px"><div><h2 style="font-size:36px">Карточки</h2>'+
       '<p style="color:var(--ink-soft);max-width:52ch">Выберите набор. Слова, которые вы знаете, возвращаются всё реже, а трудные — чаще.</p></div>'+
       '<div class="modes">'+DECKS.map(d=>{const n=deckIds(d[0]).length;
-        return '<button type="button" class="mode" data-deck="'+d[0]+'"'+(n?"":" disabled")+'><h3>'+d[1]+'</h3><p>'+n+' '+plural(n,"слово","слова","слов")+' · '+d[2]+'</p></button>'}).join("")+'</div>'+
-      '<div class="filters" role="group" aria-label="Направление">'+dirs.map(d=>'<button type="button" data-dir="'+d[0]+'" aria-pressed="'+(S.cardDir===d[0])+'">'+d[1]+'</button>').join("")+'</div></div>';
+        return '<button type="button" class="mode" data-deck="'+d[0]+'"'+(n?"":" disabled")+'><h3>'+d[1]+'</h3><p>'+n+' '+plural(n,"слово","слова","слов")+' · '+d[2]+'</p></button>'}).join("")+'</div>'+'</div>';
     return;
   }
   if(!s.active){
@@ -969,7 +1067,6 @@ function rateCard(ok){
 $("#view-cards").addEventListener("click",e=>{
   const t=e.target;
   const dk=t.closest("[data-deck]");if(dk){startCards(dk.dataset.deck);return}
-  const dr=t.closest("[data-dir]");if(dr){S.cardDir=dr.dataset.dir;renderCards();return}
   const rt=t.closest("[data-rate]");if(rt){rateCard(rt.dataset.rate==="1");return}
   if(t.closest("#showBtn")||t.closest("#flip")){flipCard();return}
   const a=t.closest("[data-act]");if(!a)return;
@@ -1403,19 +1500,20 @@ $("#sec-plan").addEventListener("change",e=>{
 });
 
 /* ---------- sections ---------- */
+const SECS=["plan","lang","notes","af","rc","kb"];
 function setSection(sec){
-  if(!["plan","lang","notes"].includes(sec))sec="plan";
+  if(!SECS.includes(sec))sec="plan";
   S.sec=sec;
-  $("#sec-plan").hidden=sec!=="plan";$("#sec-lang").hidden=sec!=="lang";$("#sec-notes").hidden=sec!=="notes";
+  SECS.forEach(s=>{$("#sec-"+(s==="plan"?"plan":s)).hidden=sec!==s});
   $$(".sections [data-sec]").forEach(b=>{if(b.dataset.sec===sec)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
   try{localStorage.setItem("sec_current",sec)}catch(e){}
-  if(sec==="plan")renderPlan();else if(sec==="notes")renderNotes();else{renderHero();drawSky()}
+  if(sec==="plan")renderPlan();else if(sec==="notes")renderNotes();else if(sec==="af")AF.render();else if(sec==="rc")RC.render();else if(sec==="kb")KB.render();else{renderHero();drawSky()}
 }
 function bindSections(){
   const img=$(".portrait img"),pi=$("#pImg");if(img&&pi)pi.src=img.src;
   $$(".sections [data-sec]").forEach(b=>b.addEventListener("click",()=>setSection(b.dataset.sec)));
   let s=(location.hash||"").replace("#","");
-  if(!["plan","lang","notes"].includes(s)){try{s=localStorage.getItem("sec_current")||"plan"}catch(e){s="plan"}}
+  if(!SECS.includes(s)){try{s=localStorage.getItem("sec_current")||"plan"}catch(e){s="plan"}}
   setSection(s);
 }
 
@@ -1744,6 +1842,527 @@ async function uploadPhoto(file){
   });
 })();
 
+const HT=Date.now();
+const SEED_AF=[
+{id:"pa1",text:"Я достойна любви и уважения — такой, какая я есть.",theme:"Любовь к себе",color:"rose",font:"serif",bg:"",media:[],fav:true,sample:true,created:HT-8e6,updated:HT-8e6},
+{id:"pa2",text:"С каждым вдохом я становлюсь спокойнее.",theme:"Спокойствие",color:"sky",font:"serif",bg:"",media:[],fav:false,sample:true,created:HT-7e6,updated:HT-7e6},
+{id:"pa3",text:"Деньги приходят ко мне легко, и я умею разумно ими распоряжаться.",theme:"Деньги",color:"butter",font:"serif",bg:"",media:[],fav:false,sample:true,created:HT-6e6,updated:HT-6e6},
+{id:"pa4",text:"Я уверенно иду к своим целям, шаг за шагом.",theme:"Успех",color:"lilac",font:"serif",bg:"",media:[],fav:false,sample:true,created:HT-5e6,updated:HT-5e6},
+{id:"pa5",text:"Моё тело сильное и благодарно мне за заботу.",theme:"Здоровье",color:"mint",font:"sans",bg:"",media:[],fav:false,sample:true,created:HT-4e6,updated:HT-4e6},
+{id:"pa6",text:"Я благодарна за этот день и всё хорошее в нём.",theme:"Благодарность",color:"peach",font:"serif",bg:"",media:[],fav:false,sample:true,created:HT-3e6,updated:HT-3e6},
+{id:"pa7",text:"Я отпускаю то, что не могу контролировать.",theme:"Спокойствие",color:"dusk",font:"serif",bg:"",media:[],fav:false,sample:true,created:HT-2e6,updated:HT-2e6},
+{id:"pa8",text:"Я заслуживаю отдыха и мягкого, глубокого сна.",theme:"Спокойствие",color:"night",font:"serif",bg:"",media:[],fav:false,sample:true,created:HT-1e6,updated:HT-1e6}
+];
+const SEED_RC=[
+{id:"pr1",title:"Паста с томатами и базиликом",category:"Еда",time:"25 минут",servings:"2 порции",ingredients:"200 г спагетти\n400 г томатов в собственном соку\n2 зубчика чеснока\n2 ст. ложки оливкового масла\nгорсть свежего базилика\nсоль, перец",steps:"Отварите пасту в подсоленной воде до состояния аль денте.\nОбжарьте чеснок на масле минуту, добавьте томаты и тушите 10 минут.\nСмешайте пасту с соусом и добавьте базилик.\nПодавайте сразу, по желанию с пармезаном.",notes:"Если соус кислит, добавьте щепотку сахара.",tags:["ужин","паста","быстро"],media:[],fav:true,sample:true,created:HT-9e6,updated:HT-9e6},
+{id:"pr2",title:"Овсяное печенье с бананом",category:"Десерты",time:"30 минут",servings:"12 штук",ingredients:"2 спелых банана\n150 г овсяных хлопьев\n50 г изюма или орехов\nщепотка корицы",steps:"Разомните бананы вилкой.\nДобавьте хлопья, изюм и корицу, перемешайте.\nВыложите ложкой на пергамент.\nВыпекайте 15 минут при 180 градусах.",notes:"Хранить в закрытой банке до 3 дней.",tags:["десерт","без сахара"],media:[],fav:false,sample:true,created:HT-8e6,updated:HT-8e6},
+{id:"pr3",title:"Мятный лимонад",category:"Напитки",time:"10 минут",servings:"4 стакана",ingredients:"2 лимона\n1 л холодной воды\n2 ст. ложки мёда\nпучок мяты\nлёд",steps:"Выжмите сок лимонов.\nРазотрите мяту с мёдом.\nСмешайте всё с водой и добавьте лёд.",notes:"",tags:["лето","напитки"],media:[],fav:false,sample:true,created:HT-7e6,updated:HT-7e6},
+{id:"pr4",title:"Маска для лица из овсянки и мёда",category:"Маски для лица",time:"15 минут",servings:"1 применение",ingredients:"2 ст. ложки овсяных хлопьев\n1 ч. ложка мёда\n2 ст. ложки тёплого молока",steps:"Измельчите хлопья в муку.\nСмешайте с мёдом и молоком до густой кашицы.\nНанесите на чистую кожу на 10 минут.\nСмойте тёплой водой.",notes:"Сначала проверьте смесь на сгибе локтя. Если появится раздражение, не используйте. Не подходит при аллергии на мёд.",tags:["уход","лицо"],media:[],fav:false,sample:true,created:HT-6e6,updated:HT-6e6},
+{id:"pr5",title:"Маска для волос с кокосовым маслом",category:"Маски для волос",time:"40 минут",servings:"1 применение",ingredients:"2 ст. ложки кокосового масла\n1 ч. ложка мёда",steps:"Растопите масло на водяной бане и смешайте с мёдом.\nНанесите на длину волос, избегая корней.\nУкутайте волосы и подождите 30 минут.\nСмойте шампунем два раза.",notes:"Для тонких волос используйте меньше масла.",tags:["уход","волосы"],media:[],fav:false,sample:true,created:HT-5e6,updated:HT-5e6}
+];
+const SEED_KS=[
+{id:"pk1",name:"Здоровье",parent:"",sample:true,created:HT-9e6},
+{id:"pk2",name:"Сон",parent:"pk1",sample:true,created:HT-8e6},
+{id:"pk3",name:"Саморазвитие",parent:"",sample:true,created:HT-7e6},
+{id:"pk4",name:"Путешествия",parent:"",sample:true,created:HT-6e6}
+];
+const SEED_KB=[
+{id:"pb1",title:"Вечерний ритуал для хорошего сна",sec:"pk2",body:"## Главная идея\nОрганизму нужен сигнал, что день заканчивается. Повторяющийся ритуал помогает быстрее заснуть.\n\n## Что включить\n- за час до сна убрать яркий свет и экраны\n- приглушить свет, заварить травяной чай\n- записать три дела на завтра\n- проветрить комнату\n\n## Порядок\n1. Выберите время отбоя и держите его всю неделю.\n2. Начинайте ритуал за 60 минут.\n3. Заканчивайте чтением или спокойной музыкой.",source:"",tags:["сон","привычки"],media:[],fav:true,sample:true,created:HT-9e6,updated:HT-9e6},
+{id:"pb2",title:"Метод Помодоро",sec:"pk3",body:"## Как это работает\nРабота идёт короткими отрезками по 25 минут с перерывами по 5 минут.\n\n## Шаги\n1. Выберите одну задачу.\n2. Поставьте таймер на 25 минут.\n3. Работайте, не отвлекаясь.\n4. Сделайте перерыв на 5 минут.\n5. После четырёх циклов отдохните 20 минут.\n\n## Когда помогает\n- трудно начать\n- много мелких отвлечений",source:"",tags:["продуктивность","фокус"],media:[],fav:false,sample:true,created:HT-8e6,updated:HT-8e6},
+{id:"pb3",title:"Чек-лист для поездки",sec:"pk4",body:"## Документы\n- паспорт и билеты\n- страховка\n- бронь жилья\n\n## Вещи\n- зарядки и powerbank\n- аптечка\n- удобная обувь\n\n## Перед выходом\n- выключить технику\n- закрыть окна\n- взять ключи",source:"",tags:["список","поездки"],media:[],fav:false,sample:true,created:HT-7e6,updated:HT-7e6}
+];
+
+/* ---------- hub: shared tools ---------- */
+const PAL={rose:["#F6D5E1","#E8B9CC","#533B47"],lilac:["#E6DAF3","#BBA9D2","#3E2F5A"],sky:["#D9E8F5","#B7CDE8","#2F4560"],peach:["#FBE3D2","#F2C0A4","#6A4030"],mint:["#D8EFE5","#A9D6C4","#2F5748"],butter:["#FBF0CC","#EBD58F","#5E4D1E"],dusk:["#8B7AB8","#5A4A8A","#FFFFFF"],night:["#2B2145","#1A1424","#F4E9F0"]};
+const COLORN={rose:"Розовый",lilac:"Сиреневый",sky:"Голубой",peach:"Персиковый",mint:"Мятный",butter:"Сливочный",dusk:"Сумерки",night:"Ночь"};
+const palStyle=k=>{const p=PAL[k]||PAL.rose;return"--c1:"+p[0]+";--c2:"+p[1]+";--ct:"+p[2]};
+const mediaUrl=id=>"/_blob/"+id;
+const hostOf=u=>{try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return String(u||"")}};
+const fixUrl=u=>{u=String(u||"").trim();return!u?"":/^https?:\/\//i.test(u)?u:"https://"+u};
+const mediaKind=f=>/^image\//.test(f.type)?"image":/^video\//.test(f.type)?"video":/^audio\//.test(f.type)?"audio":f.type==="application/pdf"?"file":"";
+const favBtn=(id,on)=>'<button type="button" class="pinbtn" data-act="fav" data-id="'+id+'" aria-pressed="'+!!on+'" aria-label="'+(on?"Убрать из избранного":"В избранное")+'"><svg class="ic" aria-hidden="true"><use href="#i-spark"/></svg></button>';
+
+function mkStore(coll,seeds,render){
+  const st={coll,items:[],ready:false,db:null,q:Promise.resolve(),key:coll+"_v1"};
+  const save=()=>{try{localStorage.setItem(st.key,JSON.stringify(st.items))}catch(e){}};
+  const run=fn=>{st.q=st.q.then(async()=>{try{await fn()}catch(e){toast(e&&e.code==="quota_exceeded"?"Хранилище заполнено":"Не удалось сохранить")}});return st.q};
+  st.put=(id,data)=>run(async()=>{
+    if(st.db)await st.db.collection(coll).doc(id).set(data);
+    else{const o=Object.assign({id},data),i=st.items.findIndex(x=>x.id===id);if(i>=0)st.items[i]=o;else st.items.push(o);save();render()}
+  });
+  st.del=id=>run(async()=>{
+    if(st.db)await st.db.collection(coll).doc(id).delete();
+    else{const i=st.items.findIndex(x=>x.id===id);if(i>=0)st.items.splice(i,1);save();render()}
+  });
+  st.init=async()=>{
+    let db=null;try{db=window.claude&&window.claude.use?await window.claude.use("db"):null}catch(e){db=null}
+    if(db){st.db=db;db.collection(coll).onSnapshot(s=>{st.items=s.docs.map(d=>Object.assign({id:d.id},d.data()));st.ready=true;render()},()=>{})}
+    else{let l=null;try{l=JSON.parse(localStorage.getItem(st.key)||"null")}catch(e){}
+      if(!Array.isArray(l))l=seeds();st.items=l;st.ready=true;save();render()}
+  };
+  return st;
+}
+
+/* media: images, video, audio, links */
+function mediaItem(m,edit,i){
+  let h;
+  if(m.k==="image")h='<img data-blob loading="lazy" src="'+mediaUrl(m.id)+'" alt="'+esc(m.t||"")+'">';
+  else if(m.k==="video")h='<video controls preload="metadata" playsinline src="'+mediaUrl(m.id)+'"></video>';
+  else if(m.k==="audio")h='<audio controls preload="none" src="'+esc(m.id?mediaUrl(m.id):m.url)+'"></audio>';
+  else{const u=m.url||mediaUrl(m.id);h='<a class="mlink" href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(m.t||hostOf(m.url)||"Файл")+'<small>'+esc(m.url?hostOf(m.url):"PDF")+'</small></a>'}
+  return'<figure class="mi mi-'+m.k+'">'+h+(edit?'<button type="button" class="mrm" data-mact="rm" data-i="'+i+'" aria-label="Убрать">×</button>':"")+'</figure>';
+}
+function mediaBlock(list,edit,label){
+  const grid='<div class="mgrid">'+list.map((m,i)=>mediaItem(m,edit,i)).join("")+'</div>';
+  if(!edit)return list.length?grid:"";
+  return'<div class="mblock"><span class="tag-ex">'+esc(label||"Фото, видео, аудио")+'</span>'+grid+
+    '<div class="mtools">'+(S.assets?'<label class="filebtn"><input type="file" class="mfile" accept="image/*,video/*,audio/*,application/pdf">+ Загрузить файл</label>':"")+
+    '<input type="text" class="murl" placeholder="Ссылка: сайт, Pinterest, Instagram, YouTube, mp3" aria-label="Ссылка" autocomplete="off"><button type="button" class="btn ghost small" data-mact="addlink">Добавить ссылку</button></div>'+
+    '<div class="mnote">'+(S.assets?"Фото и видео до 20 МБ. Аудиофайл хранилище может не принять, тогда добавьте ссылку на запись.":"Загрузка файлов работает на странице, открытой по ссылке в Claude. Ссылки работают везде.")+'</div></div>';
+}
+async function addMediaFile(file,list){
+  const k=mediaKind(file);
+  if(!k){toast("Подходят фото, видео, аудио и PDF");return false}
+  if(!S.assets){toast("Загрузка файлов доступна на странице в Claude");return false}
+  toast("Загружаю…");
+  try{const r=await S.assets.upload(file);list.push({k,id:r.id,t:file.name.replace(/\.[^.]+$/,"").slice(0,60)});toast("Файл добавлен");return true}
+  catch(e){const c=e&&e.code;toast(c==="too_large"?"Файл больше 20 МБ":c==="unsupported_type"?(k==="audio"?"Аудиофайл не принят. Добавьте ссылку на запись":"Этот формат не поддерживается"):"Не удалось загрузить файл");return false}
+}
+function linkMedia(url){
+  const u=fixUrl(url);if(!u)return null;
+  if(/\.(mp3|m4a|wav|ogg|aac)(\?|#|$)/i.test(u))return{k:"audio",url:u,t:hostOf(u)};
+  return{k:"link",url:u,t:hostOf(u)};
+}
+
+/* generic editable section */
+function mkSec(cfg){
+  const k=cfg.k,root=$("#sec-"+k);
+  const E={cfg,k,q:"",f:"",tag:"",ed:null,mode:"",dirty:false,timer:0,delc:""};
+  root.innerHTML=cfg.shell;
+  const el=s=>$("#"+k+s,root);
+  E.el=el;E.root=root;
+  E.st=mkStore(cfg.coll,cfg.seeds,()=>E.render());
+  const tagsOf=it=>Array.isArray(it.tags)?it.tags.filter(Boolean):[];
+  E.items=()=>{
+    const q=norm(E.q);
+    return E.st.items.filter(it=>cfg.pass(it,E)&&(!E.tag||tagsOf(it).includes(E.tag))&&(!q||norm(cfg.hay(it)+" "+tagsOf(it).join(" ")).includes(q)))
+      .sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||(b.updated||b.created||0)-(a.updated||a.created||0));
+  };
+  E.render=()=>{
+    const list=el("List");if(!list)return;
+    const all=E.st.items;
+    const cats=cfg.cats?cfg.cats(all,E):[];
+    if(E.f&&!cats.some(c=>c[0]===E.f))E.f="";
+    const cc=el("Cats");cc.hidden=!cats.length;
+    cc.innerHTML=cats.length?[["","Все"]].concat(cats).map(c=>'<button type="button" data-f="'+esc(c[0])+'" aria-pressed="'+(E.f===c[0])+'">'+esc(c[1])+'</button>').join(""):"";
+    const tags=cfg.tags?Array.from(new Set([].concat(...all.map(tagsOf)))).sort():[];
+    if(E.tag&&!tags.includes(E.tag))E.tag="";
+    const tg=el("Tags");if(tg){tg.hidden=!tags.length;tg.innerHTML=tags.length?[""].concat(tags).map(t=>'<button type="button" data-tg="'+esc(t)+'" aria-pressed="'+(E.tag===t)+'">'+(t?"#"+esc(t):"Все метки")+'</button>').join(""):""}
+    const dl=$("#"+k+"-tagsdl");if(dl)dl.innerHTML=tags.map(t=>'<option value="'+esc(t)+'"></option>').join("");
+    el("Lead").textContent=cfg.lead(all);
+    if(!E.st.ready){list.innerHTML='<div class="empty" style="grid-column:1/-1">Открываю…</div>';return}
+    const items=E.items();
+    list.innerHTML=items.length?items.map(cfg.card).join(""):'<div class="panel empty" style="grid-column:1/-1"><h3>'+(all.length?"Ничего не найдено":cfg.emptyT)+'</h3><p>'+(all.length?"Попробуйте другой запрос или фильтр.":cfg.emptyP)+'</p></div>';
+    $$("img[data-blob]",list).forEach(i=>i.addEventListener("error",()=>i.remove(),{once:true}));
+    if(cfg.after)cfg.after(E);
+  };
+  const status=t=>{const s=el("St");if(!s)return;const d=new Date(),hm=pad(d.getHours())+":"+pad(d.getMinutes());s.className="nstatus";s.textContent={dirty:"Есть несохранённые изменения",saving:"Сохраняю…",saved:"Сохранено · "+hm,idle:""}[t]||""};
+  E.sync=()=>{if(E.ed&&E.mode==="edit"&&el("form"))Object.assign(E.ed,cfg.read(E.ed))};
+  E.markDirty=()=>{E.dirty=true;status("dirty");clearTimeout(E.timer);E.timer=setTimeout(()=>E.save(false),900)};
+  E.paint=()=>{
+    const ed=el("Editor"),d=E.ed;
+    if(!d){ed.hidden=true;ed.innerHTML="";return}
+    ed.hidden=false;
+    if(E.mode==="view"){
+      ed.innerHTML=cfg.view(d,E)+'<div class="form" style="margin-top:16px"><div class="actions"><button type="button" class="btn" data-act="edit">Изменить</button>'+
+        '<button type="button" class="btn ghost" data-act="favd" aria-pressed="'+!!d.fav+'">'+(d.fav?"В избранном":"В избранное")+'</button><button type="button" class="btn ghost grow" data-act="close">Закрыть</button></div></div>';
+    }else{
+      ed.innerHTML='<form class="form" id="'+k+'form" novalidate><div class="nhead"><h2 style="font-size:32px">'+(d.isNew?cfg.newTitle:cfg.editTitle)+'</h2><span class="nstatus" id="'+k+'St" role="status"></span></div>'+
+        cfg.editor(d,E)+mediaBlock(d.media,true,cfg.mediaLabel)+
+        '<div class="actions"><button type="submit" class="btn">Сохранить</button><button type="button" class="btn ghost" data-act="favd" aria-pressed="'+!!d.fav+'">'+(d.fav?"В избранном":"В избранное")+'</button><button type="button" class="btn ghost" data-act="close">Закрыть</button>'+(d.isNew?"":'<button type="button" class="btn ghost grow" data-act="del">Удалить</button>')+'</div></form>';
+    }
+    $$("img[data-blob]",ed).forEach(i=>i.addEventListener("error",()=>i.remove(),{once:true}));
+    if(cfg.paint)cfg.paint(E);
+  };
+  E.open=async(id,edit)=>{
+    const it=id?E.st.items.find(x=>x.id===id):null;if(id&&!it)return;
+    if(E.ed&&E.dirty)await E.save(false);
+    E.ed=it?JSON.parse(JSON.stringify(it)):cfg.blank(E);
+    E.ed.isNew=!it;E.ed.media=Array.isArray(E.ed.media)?E.ed.media:[];
+    E.mode=(it&&cfg.view&&!edit)?"view":"edit";E.dirty=false;E.delc="";
+    E.paint();el("Editor").scrollIntoView({behavior:"smooth",block:"nearest"});
+    if(E.mode==="edit"){const f=$(cfg.focus,el("Editor"));if(f)f.focus({preventScroll:true})}
+  };
+  E.save=async manual=>{
+    const d=E.ed;if(!d)return;
+    clearTimeout(E.timer);E.sync();
+    const o=Object.assign({},d);const id=o.id;delete o.id;delete o.isNew;delete o.sample;
+    if(cfg.empty(o)&&d.isNew){if(manual)toast(cfg.emptyMsg);return}
+    o.updated=Date.now();o.created=o.created||Date.now();
+    status("saving");E.dirty=false;
+    await E.st.put(id,o);
+    d.isNew=false;d.created=o.created;
+    status("saved");
+    if(manual)toast("Сохранено");
+  };
+  E.close=async()=>{
+    if(E.ed&&E.dirty&&E.mode==="edit")await E.save(false);
+    clearTimeout(E.timer);E.ed=null;E.dirty=false;E.paint();E.render();
+  };
+  root.addEventListener("click",async e=>{
+    const t=e.target;
+    const f=t.closest("[data-f]");if(f){E.f=f.dataset.f;E.render();return}
+    const g=t.closest("[data-tg]");if(g){E.tag=g.dataset.tg;E.render();return}
+    const m=t.closest("[data-mact]");
+    if(m&&E.ed){
+      E.sync();
+      if(m.dataset.mact==="rm"){E.ed.media.splice(+m.dataset.i,1);E.paint();E.markDirty()}
+      else if(m.dataset.mact==="addlink"){
+        const inp=$(".murl",root),mm=linkMedia(inp&&inp.value);
+        if(!mm){toast("Вставьте ссылку");return}
+        E.ed.media.push(mm);E.paint();E.markDirty();
+      }
+      return;
+    }
+    const b=t.closest("[data-act]");
+    if(b){
+      const a=b.dataset.act;
+      if(a==="new"){await E.open(null)}
+      else if(a==="edit"){E.mode="edit";E.paint();const x=$(cfg.focus,el("Editor"));if(x)x.focus({preventScroll:true})}
+      else if(a==="close")await E.close();
+      else if(a==="fav"){const it=E.st.items.find(x=>x.id===b.dataset.id);if(it){const o=Object.assign({},it,{fav:!it.fav});delete o.id;await E.st.put(it.id,o)}}
+      else if(a==="favd"&&E.ed){
+        E.ed.fav=!E.ed.fav;b.setAttribute("aria-pressed",String(E.ed.fav));b.textContent=E.ed.fav?"В избранном":"В избранное";
+        if(E.mode==="view")E.save(false);else E.markDirty();
+      }
+      else if(a==="del"&&E.ed){
+        if(!E.delc){E.delc="1";b.textContent="Удалить насовсем";setTimeout(()=>{E.delc="";if(b.isConnected)b.textContent="Удалить"},4000)}
+        else{const id=E.ed.id;clearTimeout(E.timer);E.ed=null;E.dirty=false;E.paint();await E.st.del(id);toast("Удалено")}
+      }
+      else if(cfg.act)cfg.act(a,b,E,e);
+      return;
+    }
+    const card=t.closest("[data-open]");
+    if(card&&root.contains(card))await E.open(card.dataset.open);
+  });
+  root.addEventListener("keydown",e=>{
+    const card=e.target.closest&&e.target.closest("[data-open]");
+    if(card&&e.target===card&&(e.key==="Enter"||e.key===" ")){e.preventDefault();E.open(card.dataset.open)}
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"&&el("form")){e.preventDefault();E.save(true)}
+    if(e.key==="Escape"&&el("form")&&e.target.closest("#"+k+"form"))E.close();
+  });
+  root.addEventListener("input",e=>{
+    if(e.target.id===k+"q"){E.q=e.target.value;E.render();return}
+    if(e.target.closest&&e.target.closest("#"+k+"form")&&!e.target.classList.contains("murl")){
+      E.markDirty();if(cfg.input)cfg.input(e.target,E);
+    }
+  });
+  root.addEventListener("change",async e=>{
+    const t=e.target;
+    if(t.classList&&t.classList.contains("mfile")&&E.ed){
+      const file=t.files&&t.files[0];if(!file)return;
+      E.sync();const ok=await addMediaFile(file,E.ed.media);
+      if(ok){E.paint();E.markDirty()}else t.value="";
+    }else if(cfg.change&&E.ed)cfg.change(t,E);
+  });
+  root.addEventListener("submit",e=>{
+    e.preventDefault();
+    if(e.target.id===k+"form")E.save(true);
+    else if(cfg.submit)cfg.submit(e.target,E);
+  });
+  return E;
+}
+
+/* ---------- affirmations ---------- */
+const AF_THEMES=["Любовь к себе","Спокойствие","Деньги","Успех","Здоровье","Отношения","Благодарность"];
+function affCard(a,pv){
+  const bg=!!a.bg;
+  return'<article class="acard'+(bg?" hasbg":"")+" font-"+(a.font==="sans"?"sans":"serif")+(pv?" apreview":"")+'" style="'+palStyle(a.color)+'"'+(pv?' id="afPrev"':' data-open="'+a.id+'" tabindex="0" role="button" aria-label="Открыть карточку"')+'>'+
+    (bg?'<img class="abg" data-blob src="'+mediaUrl(a.bg)+'" alt="">':"")+
+    (a.theme?'<span class="atheme">'+esc(a.theme)+'</span>':"")+'<p>'+esc(a.text||"Ваша аффирмация")+'</p>'+
+    (pv?"":favBtn(a.id,a.fav)+(a.sample?'<span class="tag-ex asm">пример</span>':""))+'</article>';
+}
+const AF=mkSec({
+  k:"af",coll:"affs",seeds:()=>SEED_AF.map(x=>Object.assign({},x)),
+  shell:'<div class="panel hubhead"><div><div class="eyebrow">Мой настрой</div><h1>Аффирмации</h1><p id="afLead"></p></div>'+
+    '<div class="toolbar"><div class="searchbox"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg><input type="search" id="afq" placeholder="Поиск по тексту и тематике" aria-label="Поиск по аффирмациям"></div>'+
+    '<button type="button" class="btn ghost" data-act="session"><svg class="ic" aria-hidden="true"><use href="#i-moon"/></svg> Сеанс с музыкой</button>'+
+    '<button type="button" class="btn" data-act="new">+ Новая карточка</button></div>'+
+    '<div class="filters" id="afCats" role="group" aria-label="Тематика" hidden></div></div>'+
+    '<div id="afEditor" class="panel" hidden></div><div class="agrid" id="afList"></div>',
+  newTitle:"Новая аффирмация",editTitle:"Изменить аффирмацию",mediaLabel:"Запись голоса, музыка, файлы",focus:"#af-text",
+  emptyT:"Карточек пока нет",emptyP:"Создайте первую аффирмацию, выберите тему и цвет.",emptyMsg:"Впишите текст аффирмации",
+  blank:E=>({id:newId(),text:"",theme:E.f&&E.f!=="__fav"?E.f:"",color:"rose",font:"serif",bg:"",media:[],fav:false,created:Date.now()}),
+  lead:all=>all.length?"Карточек: "+all.length+". Откройте карточку, чтобы изменить её, или запустите сеанс.":"Собирайте свои аффирмации по темам и цветам.",
+  pass:(it,E)=>E.f==="__fav"?!!it.fav:(!E.f||it.theme===E.f),
+  hay:it=>(it.text||"")+" "+(it.theme||""),
+  empty:o=>!String(o.text||"").trim(),
+  cats:all=>{const th=Array.from(new Set(all.map(a=>a.theme).filter(Boolean)));const r=th.map(t=>[t,t]);if(all.some(a=>a.fav))r.unshift(["__fav","Избранное"]);return r},
+  card:a=>affCard(a,false),
+  editor:d=>'<div class="aedit"><div>'+affCard(d,true)+'</div><div class="form">'+
+    '<label>Текст аффирмации<textarea id="af-text" rows="4" maxlength="300" placeholder="Например: Я спокойно иду к своим целям">'+esc(d.text)+'</textarea></label>'+
+    '<div class="row"><label>Тематика<input type="text" id="af-theme" list="af-themes" value="'+esc(d.theme||"")+'" placeholder="выберите или впишите свою" autocomplete="off"><datalist id="af-themes">'+AF_THEMES.map(t=>'<option value="'+esc(t)+'"></option>').join("")+'</datalist></label>'+
+    '<label>Шрифт<select id="af-font"><option value="serif"'+(d.font!=="sans"?" selected":"")+'>Изящный</option><option value="sans"'+(d.font==="sans"?" selected":"")+'>Простой</option></select></label></div>'+
+    '<div><div class="tag-ex" style="margin-bottom:8px">Цвет</div><div class="swatches" role="group" aria-label="Цвет карточки">'+Object.keys(PAL).map(c=>'<button type="button" class="sw" style="'+palStyle(c)+'" data-act="color" data-c="'+c+'" aria-pressed="'+(d.color===c)+'" aria-label="'+COLORN[c]+'" title="'+COLORN[c]+'"></button>').join("")+'</div></div>'+
+    '<div><div class="tag-ex" style="margin-bottom:8px">Фоновое фото</div><div class="mtools">'+
+    (S.assets?'<label class="filebtn"><input type="file" class="bgfile" accept="image/*">'+(d.bg?"Заменить фото":"+ Загрузить фото")+'</label>':'<span class="mnote">Загрузка доступна на странице в Claude</span>')+
+    (d.bg?'<button type="button" class="btn ghost small" data-act="bgrm">Убрать фото</button>':"")+'</div></div></div></div>',
+  read:d=>({text:$("#af-text").value.trim(),theme:$("#af-theme").value.trim(),font:$("#af-font").value}),
+  input:(t,E)=>{if(["af-text","af-theme","af-font"].includes(t.id))affPrev(E)},
+  change:(t,E)=>{if(t.id==="af-font")affPrev(E);if(t.classList.contains("bgfile"))affBg(t,E)},
+  act:(a,b,E)=>{
+    if(a==="session"){const it=E.items();if(!it.length){toast("Сначала создайте карточки");return}plOpen(it)}
+    else if(a==="color"&&E.ed){E.sync();E.ed.color=b.dataset.c;$$(".sw",E.root).forEach(s=>s.setAttribute("aria-pressed",String(s.dataset.c===E.ed.color)));affPrev(E);E.markDirty()}
+    else if(a==="bgrm"&&E.ed){E.sync();E.ed.bg="";E.paint();E.markDirty()}
+  }
+});
+function affPrev(E){
+  E.sync();const p=$("#afPrev");if(!p)return;
+  p.outerHTML=affCard(E.ed,true);
+  const i=$("#afPrev img[data-blob]");if(i)i.addEventListener("error",()=>i.remove(),{once:true});
+}
+async function affBg(inp,E){
+  const f=inp.files&&inp.files[0];if(!f)return;
+  if(!/^image\//.test(f.type)){toast("Нужна картинка");return}
+  if(!S.assets){toast("Загрузка доступна на странице в Claude");return}
+  toast("Загружаю фото…");
+  try{const r=await S.assets.upload(f);E.sync();E.ed.bg=r.id;E.paint();E.markDirty()}
+  catch(err){toast(err&&err.code==="too_large"?"Файл больше 20 МБ":"Не удалось загрузить фото")}
+}
+
+/* ambient sound for sessions (made in the browser, no files) */
+const Amb={ctx:null,master:null,nodes:[],timer:0,vol:.5};
+function ambStop(){
+  clearInterval(Amb.timer);Amb.timer=0;
+  Amb.nodes.forEach(n=>{try{n.stop&&n.stop()}catch(e){}try{n.disconnect()}catch(e){}});Amb.nodes=[];
+}
+function ambVol(v){Amb.vol=v;if(Amb.master)Amb.master.gain.value=v*.6}
+function ambStart(mode){
+  ambStop();if(mode==="off")return;
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC){toast("В этом браузере нет звука");return}
+  if(!Amb.ctx){Amb.ctx=new AC();Amb.master=Amb.ctx.createGain();Amb.master.connect(Amb.ctx.destination)}
+  const c=Amb.ctx;c.resume&&c.resume();ambVol(Amb.vol);
+  const keep=n=>{Amb.nodes.push(n);return n};
+  if(mode==="pad"){
+    [130.81,196,261.63,329.63,392].forEach((f,i)=>{
+      const o=keep(c.createOscillator()),g=keep(c.createGain()),l=keep(c.createOscillator()),lg=keep(c.createGain());
+      o.type="sine";o.frequency.value=f;o.detune.value=(i%2?4:-4);
+      g.gain.value=.07;l.frequency.value=.05+i*.027;lg.gain.value=.045;
+      l.connect(lg);lg.connect(g.gain);o.connect(g);g.connect(Amb.master);o.start();l.start();
+    });
+  }else if(mode==="sea"){
+    const len=c.sampleRate*3,buf=c.createBuffer(1,len,c.sampleRate),d=buf.getChannelData(0);
+    let last=0;for(let i=0;i<len;i++){const w=Math.random()*2-1;last=(last+.02*w)/1.02;d[i]=last*3.2}
+    const s=keep(c.createBufferSource());s.buffer=buf;s.loop=true;
+    const lp=keep(c.createBiquadFilter());lp.type="lowpass";lp.frequency.value=700;
+    const g=keep(c.createGain());g.gain.value=.6;
+    const l=keep(c.createOscillator()),lg=keep(c.createGain());l.frequency.value=.11;lg.gain.value=.35;
+    l.connect(lg);lg.connect(g.gain);s.connect(lp);lp.connect(g);g.connect(Amb.master);s.start();l.start();
+  }else if(mode==="bells"){
+    const notes=[523.25,587.33,659.25,783.99,880];
+    const ring=()=>{
+      if(!Amb.ctx)return;const t=c.currentTime,f=notes[Math.floor(Math.random()*notes.length)];
+      const o=c.createOscillator(),g=c.createGain();o.type="sine";o.frequency.value=f;
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.35,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+4);
+      o.connect(g);g.connect(Amb.master);o.start(t);o.stop(t+4.2);
+    };
+    ring();Amb.timer=setInterval(ring,2800);
+  }
+}
+
+/* session player */
+const PL={list:[],i:0,auto:true,timer:0,voice:null};
+function plVoiceUrl(a){const m=(a.media||[]).find(x=>x.k==="audio");return m?(m.id?mediaUrl(m.id):m.url):""}
+function plStopVoice(){if(PL.voice){try{PL.voice.pause()}catch(e){}PL.voice=null}const b=$('[data-pl="voice"]');if(b)b.textContent="Слушать запись"}
+function plShow(){
+  const a=PL.list[PL.i],box=$("#afPlay");if(!a)return;
+  box.setAttribute("style",palStyle(a.color)+(a.bg?";background-image:url("+mediaUrl(a.bg)+")":""));
+  box.classList.toggle("hasbg",!!a.bg);
+  $("#afpTheme").textContent=a.theme||"";
+  const t=$("#afpText");t.textContent=a.text;t.className="afp-text"+(a.font==="sans"?" sans":"");
+  $("#afpCount").textContent=(PL.i+1)+" из "+PL.list.length;
+  plStopVoice();$('[data-pl="voice"]').hidden=!plVoiceUrl(a);
+}
+function plTick(){clearInterval(PL.timer);PL.timer=0;if(PL.auto)PL.timer=setInterval(()=>plGo(1),9000)}
+function plGo(n){if(!PL.list.length)return;PL.i=(PL.i+n+PL.list.length)%PL.list.length;plShow()}
+function plOpen(items){
+  PL.list=shuffle(items);PL.i=0;PL.auto=true;
+  const box=$("#afPlay");box.hidden=false;document.body.style.overflow="hidden";
+  $("#afpMusic").value="off";$('[data-pl="auto"]').textContent="Пауза";
+  plShow();plTick();$('[data-pl="close"]').focus({preventScroll:true});
+}
+function plClose(){
+  clearInterval(PL.timer);PL.timer=0;ambStop();plStopVoice();
+  $("#afPlay").hidden=true;document.body.style.overflow="";
+}
+(function bindPlayer(){
+  const box=$("#afPlay");
+  box.addEventListener("click",e=>{
+    const b=e.target.closest("[data-pl]");if(!b)return;
+    const a=b.dataset.pl;
+    if(a==="next"){plGo(1);plTick()}
+    else if(a==="prev"){plGo(-1);plTick()}
+    else if(a==="auto"){PL.auto=!PL.auto;b.textContent=PL.auto?"Пауза":"Дальше сам";plTick()}
+    else if(a==="close")plClose();
+    else if(a==="voice"){
+      if(PL.voice){plStopVoice();return}
+      const u=plVoiceUrl(PL.list[PL.i]);if(!u)return;
+      PL.voice=new Audio(u);PL.voice.addEventListener("ended",plStopVoice);
+      PL.voice.play().then(()=>{b.textContent="Остановить запись"}).catch(()=>{toast("Запись не воспроизводится");PL.voice=null});
+    }
+  });
+  $("#afpMusic").addEventListener("change",e=>ambStart(e.target.value));
+  $("#afpVol").addEventListener("input",e=>ambVol(e.target.value/100));
+  document.addEventListener("keydown",e=>{
+    if(box.hidden)return;
+    if(e.key==="Escape")plClose();else if(e.key==="ArrowRight"){plGo(1);plTick()}else if(e.key==="ArrowLeft"){plGo(-1);plTick()}
+  });
+})();
+
+/* ---------- recipes ---------- */
+const RC_CATS=["Еда","Десерты","Напитки","Маски для лица","Маски для волос","Уход за телом"];
+const rcCls=c=>/маск|уход/i.test(c)?"a-art":/десерт/i.test(c)?"a-love":/напит/i.test(c)?"a-work":/еда/i.test(c)?"a-money":"a-home";
+const lines=s=>String(s||"").split("\n").map(x=>x.trim()).filter(Boolean);
+const RC=mkSec({
+  k:"rc",coll:"recipes",seeds:()=>SEED_RC.map(x=>Object.assign({},x)),tags:true,
+  shell:'<div class="panel hubhead"><div><div class="eyebrow">Моя кухня и уход</div><h1>Рецепты</h1><p id="rcLead"></p></div>'+
+    '<div class="toolbar"><div class="searchbox"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg><input type="search" id="rcq" placeholder="Поиск по названию, составу и меткам" aria-label="Поиск по рецептам"></div>'+
+    '<button type="button" class="btn" data-act="new">+ Новый рецепт</button></div>'+
+    '<div class="filters" id="rcCats" role="group" aria-label="Категория" hidden></div><div class="filters" id="rcTags" role="group" aria-label="Метки" hidden></div></div>'+
+    '<div id="rcEditor" class="panel" hidden></div><div class="notes-grid" id="rcList"></div><datalist id="rc-tagsdl"></datalist>',
+  newTitle:"Новый рецепт",editTitle:"Изменить рецепт",mediaLabel:"Фото, видео, ссылки",focus:"#rc-title",
+  emptyT:"Рецептов пока нет",emptyP:"Добавьте первый рецепт: еду, напиток или маску.",emptyMsg:"Впишите название рецепта",
+  blank:E=>({id:newId(),title:"",category:E.f&&E.f!=="__fav"?E.f:"Еда",time:"",servings:"",ingredients:"",steps:"",notes:"",tags:[],media:[],fav:false,created:Date.now()}),
+  lead:all=>all.length?"Рецептов: "+all.length+". Откройте карточку, чтобы готовить по шагам.":"Еда, напитки, маски и уход в одном месте.",
+  pass:(it,E)=>E.f==="__fav"?!!it.fav:(!E.f||it.category===E.f),
+  hay:it=>[it.title,it.category,it.ingredients].join(" "),
+  empty:o=>!String(o.title||"").trim()&&!String(o.ingredients||"").trim(),
+  cats:all=>{const used=Array.from(new Set(all.map(r=>r.category).filter(Boolean)));
+    used.sort((a,b)=>{const x=RC_CATS.indexOf(a),y=RC_CATS.indexOf(b);return(x<0?99:x)-(y<0?99:y)||a.localeCompare(b)});
+    const r=used.map(c=>[c,c]);if(all.some(a=>a.fav))r.unshift(["__fav","Избранное"]);return r},
+  card:r=>{
+    const cover=(r.media||[]).find(m=>m.k==="image"),ing=lines(r.ingredients).slice(0,4).join(", ");
+    return'<article class="panel note" data-open="'+r.id+'" tabindex="0" role="button" aria-label="Открыть рецепт «'+esc(r.title||"Без названия")+'»">'+
+      (cover?'<img class="ncover" data-blob loading="lazy" src="'+mediaUrl(cover.id)+'" alt="">':"")+
+      '<div class="nt"><h3>'+esc(r.title||"Без названия")+'</h3>'+favBtn(r.id,r.fav)+'</div>'+
+      '<div><span class="area '+rcCls(r.category||"")+'">'+esc(r.category||"Рецепт")+'</span></div>'+
+      '<div class="nb">'+esc(ing)+'</div>'+
+      ((r.tags||[]).length?'<div class="ntags">'+r.tags.slice(0,5).map(t=>'<span>#'+esc(t)+'</span>').join("")+'</div>':"")+
+      '<div class="nf"><span>'+(r.sample?'<span class="tag-ex">пример</span>':"")+'</span><span>'+esc([r.time,r.servings].filter(Boolean).join(" · "))+'</span></div></article>';
+  },
+  view:r=>{
+    const ing=lines(r.ingredients),st=lines(r.steps);
+    return'<div class="hview"><div class="chips"><span class="area '+rcCls(r.category||"")+'">'+esc(r.category||"Рецепт")+'</span>'+(r.time?'<span class="chip">'+esc(r.time)+'</span>':"")+(r.servings?'<span class="chip">'+esc(r.servings)+'</span>':"")+(r.sample?'<span class="tag-ex">пример</span>':"")+'</div>'+
+      '<h2>'+esc(r.title||"Без названия")+'</h2>'+mediaBlock(r.media||[],false)+
+      '<div class="hcols"><div><h4>Ингредиенты</h4>'+(ing.length?'<ul class="chk">'+ing.map(x=>'<li><label><input type="checkbox"><span>'+esc(x)+'</span></label></li>').join("")+'</ul>':'<p class="mnote">Не заполнено</p>')+'</div>'+
+      '<div><h4>Приготовление</h4>'+(st.length?'<ol class="steps">'+st.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ol>':'<p class="mnote">Не заполнено</p>')+'</div></div>'+
+      (r.notes?'<div class="hnote">'+esc(r.notes)+'</div>':"")+
+      ((r.tags||[]).length?'<div class="ntags">'+r.tags.map(t=>'<span>#'+esc(t)+'</span>').join("")+'</div>':"")+'</div>';
+  },
+  editor:r=>'<label>Название<input type="text" id="rc-title" value="'+esc(r.title)+'" autocomplete="off" placeholder="Например: Овсяная маска для лица"></label>'+
+    '<div class="row"><label>Категория<input type="text" id="rc-cat" list="rc-cats" value="'+esc(r.category||"")+'" autocomplete="off"><datalist id="rc-cats">'+RC_CATS.map(c=>'<option value="'+esc(c)+'"></option>').join("")+'</datalist></label>'+
+    '<label>Время<input type="text" id="rc-time" value="'+esc(r.time||"")+'" placeholder="30 минут" autocomplete="off"></label>'+
+    '<label>Порции<input type="text" id="rc-serv" value="'+esc(r.servings||"")+'" placeholder="2 порции" autocomplete="off"></label></div>'+
+    '<div class="row"><label>Ингредиенты (каждый с новой строки)<textarea id="rc-ing" rows="8">'+esc(r.ingredients)+'</textarea></label>'+
+    '<label>Шаги (каждый с новой строки)<textarea id="rc-steps" rows="8">'+esc(r.steps)+'</textarea></label></div>'+
+    '<label>Заметки и советы<textarea id="rc-note" rows="3">'+esc(r.notes)+'</textarea></label>'+
+    '<label>Метки через запятую<input type="text" id="rc-tags" list="rc-tagsdl" value="'+esc((r.tags||[]).join(", "))+'" placeholder="ужин, быстро" autocomplete="off"></label>',
+  read:()=>({title:$("#rc-title").value.trim(),category:$("#rc-cat").value.trim()||"Другое",time:$("#rc-time").value.trim(),servings:$("#rc-serv").value.trim(),ingredients:$("#rc-ing").value,steps:$("#rc-steps").value,notes:$("#rc-note").value.trim(),tags:parseTags($("#rc-tags").value)})
+});
+
+/* ---------- knowledge base ---------- */
+const KS=mkStore("kbsections",()=>SEED_KS.map(x=>Object.assign({},x)),()=>KB.render());
+const ksKids=(p)=>KS.items.filter(s=>(s.parent||"")===p).sort((a,b)=>(a.created||0)-(b.created||0));
+function ksTree(){const out=[];const walk=(p,d)=>ksKids(p).forEach(s=>{out.push({s,d});walk(s.id,d+1)});walk("",0);return out}
+function ksIds(id){const r=[id];ksKids(id).forEach(c=>r.push(...ksIds(c.id)));return r}
+function ksPath(id){const p=[];let c=KS.items.find(x=>x.id===id),n=0;while(c&&n++<9){p.unshift(c.name);c=KS.items.find(x=>x.id===c.parent)}return p}
+const kbMedia=a=>{const m=a.media||[],c=k=>m.filter(x=>x.k===k).length,p=[];
+  if(c("image"))p.push(c("image")+" фото");if(c("video"))p.push(c("video")+" видео");if(c("audio"))p.push(c("audio")+" аудио");if(c("link")+c("file"))p.push((c("link")+c("file"))+" ссылок");return p.join(" · ")};
+const KB=mkSec({
+  k:"kb",coll:"kb",seeds:()=>SEED_KB.map(x=>Object.assign({},x)),tags:true,
+  shell:'<div class="panel hubhead"><div><div class="eyebrow">Всё, что стоит сохранить</div><h1>База знаний</h1><p id="kbLead"></p></div>'+
+    '<div class="toolbar"><div class="searchbox"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg><input type="search" id="kbq" placeholder="Поиск по статьям и меткам" aria-label="Поиск по базе знаний"></div>'+
+    '<button type="button" class="btn" data-act="new">+ Новая статья</button></div>'+
+    '<div class="filters" id="kbTags" role="group" aria-label="Метки" hidden></div><div id="kbCats" hidden></div></div>'+
+    '<div class="kbwrap"><aside class="panel kbside" id="kbSide" aria-label="Разделы"></aside><div class="kbmain"><div id="kbEditor" class="panel" hidden></div><div class="notes-grid" id="kbList"></div></div></div><datalist id="kb-tagsdl"></datalist>',
+  newTitle:"Новая статья",editTitle:"Изменить статью",mediaLabel:"Картинки, видео, аудио, ссылки на посты",focus:"#kb-title",
+  emptyT:"Статей пока нет",emptyP:"Создайте раздел и добавьте первую статью.",emptyMsg:"Впишите название или текст",
+  sec:"",
+  blank:E=>({id:newId(),title:"",sec:E.sec&&E.sec!=="none"?E.sec:"",body:"",source:"",tags:[],media:[],fav:false,created:Date.now()}),
+  lead:all=>all.length?"Статей: "+all.length+". Выбирайте раздел слева или ищите по меткам.":"Собирайте статьи, посты и заметки по разделам.",
+  pass:(it,E)=>{if(!E.sec)return true;if(E.sec==="none")return!it.sec||!KS.items.some(s=>s.id===it.sec);return ksIds(E.sec).includes(it.sec)},
+  hay:it=>[it.title,it.body,it.source,ksPath(it.sec).join(" ")].join(" "),
+  empty:o=>!String(o.title||"").trim()&&!String(o.body||"").trim(),
+  card:a=>{
+    const cover=(a.media||[]).find(m=>m.k==="image"),path=ksPath(a.sec).join(" / "),mm=kbMedia(a);
+    return'<article class="panel note" data-open="'+a.id+'" tabindex="0" role="button" aria-label="Открыть статью «'+esc(a.title||"Без названия")+'»">'+
+      (cover?'<img class="ncover" data-blob loading="lazy" src="'+mediaUrl(cover.id)+'" alt="">':"")+
+      '<div class="nt"><h3>'+esc(a.title||"Без названия")+'</h3>'+favBtn(a.id,a.fav)+'</div>'+
+      (path?'<div><span class="area a-growth">'+esc(path)+'</span></div>':"")+
+      '<div class="nb">'+esc(plainText(a.body||"Пустая статья"))+'</div>'+
+      ((a.tags||[]).length?'<div class="ntags">'+a.tags.slice(0,5).map(t=>'<span>#'+esc(t)+'</span>').join("")+'</div>':"")+
+      '<div class="nf"><span>'+(a.sample?'<span class="tag-ex">пример</span>':esc(mm))+'</span><span>'+(a.source?esc(hostOf(a.source)):"")+'</span></div></article>';
+  },
+  view:a=>{
+    const path=ksPath(a.sec);
+    return'<div class="hview"><div class="chips">'+(path.length?'<span class="area a-growth">'+esc(path.join(" / "))+'</span>':"")+(a.sample?'<span class="tag-ex">пример</span>':"")+'</div>'+
+      '<h2>'+esc(a.title||"Без названия")+'</h2>'+
+      (a.source?'<a class="srclink" href="'+esc(a.source)+'" target="_blank" rel="noopener">Источник: '+esc(hostOf(a.source))+'</a>':"")+
+      mediaBlock(a.media||[],false)+
+      (a.body?'<div class="rich">'+richHtml(a.body)+'</div>':"")+
+      ((a.tags||[]).length?'<div class="ntags">'+a.tags.map(t=>'<span>#'+esc(t)+'</span>').join("")+'</div>':"")+'</div>';
+  },
+  editor:a=>'<label>Название<input type="text" id="kb-title" value="'+esc(a.title)+'" autocomplete="off"></label>'+
+    '<div class="row"><label>Раздел<select id="kb-sec"><option value="">Без раздела</option>'+ksTree().map(x=>'<option value="'+x.s.id+'"'+(a.sec===x.s.id?" selected":"")+'>'+"— ".repeat(x.d)+esc(x.s.name)+'</option>').join("")+'</select></label>'+
+    '<label>Ссылка на источник<input type="text" id="kb-src" value="'+esc(a.source||"")+'" placeholder="Сайт, пост в Instagram, пин в Pinterest" autocomplete="off"></label></div>'+
+    '<label>Метки через запятую<input type="text" id="kb-tags" list="kb-tagsdl" value="'+esc((a.tags||[]).join(", "))+'" placeholder="например: сон, привычки" autocomplete="off"></label>'+
+    '<label>Текст<textarea id="kb-body" rows="12" placeholder="Вставьте текст статьи или поста. Заголовок раздела: ## Название. Список: - пункт. Шаги: 1. шаг">'+esc(a.body)+'</textarea></label>',
+  read:()=>({title:$("#kb-title").value.trim(),sec:$("#kb-sec").value,source:fixUrl($("#kb-src").value),tags:parseTags($("#kb-tags").value),body:$("#kb-body").value}),
+  after:E=>kbSide(E),
+  act:(a,b,E)=>kbAct(a,E),
+  submit:(f,E)=>{if(f.id==="kb-sform")kbAct("ksadd",E)}
+});
+function kbSide(E){
+  const side=$("#kbSide");if(!side)return;
+  const all=KB.st.items,cnt=id=>all.filter(a=>ksIds(id).includes(a.sec)).length;
+  const none=all.filter(a=>!a.sec||!KS.items.some(s=>s.id===a.sec)).length;
+  const cur=E.sec&&E.sec!=="none"?KS.items.find(s=>s.id===E.sec):null;
+  const btn=(id,name,n,d)=>'<button type="button" class="ksb" data-ksec="'+id+'" style="--d:'+d+'" aria-pressed="'+(E.sec===id)+'"><span>'+esc(name)+'</span><b>'+n+'</b></button>';
+  const keep=$("#kb-sname")?$("#kb-sname").value:"";
+  side.innerHTML='<span class="tag-ex" style="padding:0 4px 4px">Разделы</span>'+btn("","Все статьи",all.length,0)+
+    ksTree().map(x=>btn(x.s.id,x.s.name,cnt(x.s.id),x.d)).join("")+btn("none","Без раздела",none,0)+
+    '<form class="ksform" id="kb-sform" novalidate><input type="text" id="kb-sname" placeholder="'+(cur?"Название подраздела":"Название раздела")+'" aria-label="Название раздела" autocomplete="off" value="'+esc(keep)+'">'+
+    '<div class="mtools"><button type="submit" class="btn small">'+(cur?"+ Подраздел в «"+esc(cur.name)+"»":"+ Новый раздел")+'</button></div>'+
+    (cur?'<div class="mtools"><button type="button" class="btn ghost small" data-act="ksren">Переименовать</button><button type="button" class="btn ghost small" data-act="ksdel">Удалить раздел</button></div>':"")+'</form>';
+}
+async function kbAct(a,E){
+  const inp=$("#kb-sname"),name=inp?inp.value.trim():"";
+  const cur=E.sec&&E.sec!=="none"?KS.items.find(s=>s.id===E.sec):null;
+  if(a==="ksadd"){
+    if(!name){toast("Впишите название");if(inp)inp.focus();return}
+    const id=newId();if(inp)inp.value="";await KS.put(id,{name:name.slice(0,60),parent:cur?cur.id:"",created:Date.now()});
+    toast("Раздел добавлен");
+  }else if(a==="ksren"&&cur){
+    if(!name){toast("Впишите новое название");if(inp)inp.focus();return}
+    const o=Object.assign({},cur,{name:name.slice(0,60)});delete o.id;delete o.sample;if(inp)inp.value="";await KS.put(cur.id,o);toast("Раздел переименован");
+  }else if(a==="ksdel"&&cur){
+    const b=$('[data-act="ksdel"]');
+    if(!E.sdc){E.sdc=1;if(b)b.textContent="Точно удалить?";setTimeout(()=>{E.sdc=0;const x=$('[data-act="ksdel"]');if(x)x.textContent="Удалить раздел"},4000);return}
+    E.sdc=0;const par=cur.parent||"";
+    for(const c of ksKids(cur.id)){const o=Object.assign({},c,{parent:par});delete o.id;await KS.put(c.id,o)}
+    for(const art of KB.st.items.filter(x=>x.sec===cur.id)){const o=Object.assign({},art,{sec:par});delete o.id;await KB.st.put(art.id,o)}
+    await KS.del(cur.id);KB.sec=par;toast("Раздел удалён, статьи перенесены выше");
+  }
+  KB.render();
+}
+KB.sec="";
+$("#sec-kb").addEventListener("click",e=>{
+  const s=e.target.closest("[data-ksec]");
+  if(s){KB.sec=s.dataset.ksec;KB.sdc=0;KB.render()}
+});
+function initHub(){AF.st.init();RC.st.init();KS.init();KB.st.init()}
+
 /* ---------- boot ---------- */
 $$(".langs button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
 $$("[data-tab]").forEach(b=>b.addEventListener("click",()=>setTab(b.dataset.tab)));
@@ -1751,10 +2370,9 @@ drawSky();renderHero();renderWords();
 initStore();
 initPlan();
 initNotes();
+initHub();
 bindSections();
 })();
 
 </script>
-
-</body>
-</html>
+</body></html>
